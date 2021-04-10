@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/08/2021 15:53:52
+-- Date Created: 04/09/2021 01:17:30
 -- Generated from EDMX file: C:\diplom\serviceCenter\serviceCenterDB.edmx
 -- --------------------------------------------------
 
@@ -17,43 +17,106 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_unitcharacteristic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[characteristics] DROP CONSTRAINT [FK_unitcharacteristic];
+GO
+IF OBJECT_ID(N'[dbo].[FK_characteristicmoduleCharacteristic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[moduleCharacteristics] DROP CONSTRAINT [FK_characteristicmoduleCharacteristic];
+GO
+IF OBJECT_ID(N'[dbo].[FK_modulemoduleCharacteristic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[moduleCharacteristics] DROP CONSTRAINT [FK_modulemoduleCharacteristic];
+GO
+IF OBJECT_ID(N'[dbo].[FK_typeOfModulemodule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[modules] DROP CONSTRAINT [FK_typeOfModulemodule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_moduleupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_moduleupgradeReplacement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_clientDeviceupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_clientDeviceupgradeReplacement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_typeOfDeviceclientDevice]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_typeOfDeviceclientDevice];
+GO
+IF OBJECT_ID(N'[dbo].[FK_clientDevicerequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_clientDevicerequestedService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_servicerequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_servicerequestedService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_contractclientDevice]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_contractclientDevice];
+GO
+IF OBJECT_ID(N'[dbo].[FK_clientcontract]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[contracts] DROP CONSTRAINT [FK_clientcontract];
+GO
+IF OBJECT_ID(N'[dbo].[FK_employeeupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_employeeupgradeReplacement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_positionemployee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[employees] DROP CONSTRAINT [FK_positionemployee];
+GO
+IF OBJECT_ID(N'[dbo].[FK_stageOfImplementationrequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_stageOfImplementationrequestedService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_employeeserviceExecution]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[servicesExecution] DROP CONSTRAINT [FK_employeeserviceExecution];
+GO
+IF OBJECT_ID(N'[dbo].[FK_requestedServiceserviceExecution]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[servicesExecution] DROP CONSTRAINT [FK_requestedServiceserviceExecution];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[characteristics1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[characteristics1];
+IF OBJECT_ID(N'[dbo].[characteristics]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[characteristics];
 GO
-IF OBJECT_ID(N'[dbo].[clientDeviceSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[clientDeviceSets];
+IF OBJECT_ID(N'[dbo].[clientsDevices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[clientsDevices];
 GO
-IF OBJECT_ID(N'[dbo].[clientSet1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[clientSet1];
+IF OBJECT_ID(N'[dbo].[clients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[clients];
 GO
-IF OBJECT_ID(N'[dbo].[contractSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[contractSets];
+IF OBJECT_ID(N'[dbo].[contracts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[contracts];
 GO
-IF OBJECT_ID(N'[dbo].[moduleSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[moduleSets];
+IF OBJECT_ID(N'[dbo].[modules]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[modules];
 GO
-IF OBJECT_ID(N'[dbo].[requestedServicesSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[requestedServicesSets];
+IF OBJECT_ID(N'[dbo].[requestedServices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[requestedServices];
 GO
-IF OBJECT_ID(N'[dbo].[serviceSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[serviceSets];
+IF OBJECT_ID(N'[dbo].[services]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[services];
 GO
-IF OBJECT_ID(N'[dbo].[typeOfDeviceSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[typeOfDeviceSets];
+IF OBJECT_ID(N'[dbo].[typesOfDevices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[typesOfDevices];
 GO
-IF OBJECT_ID(N'[dbo].[typeOfModuleSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[typeOfModuleSets];
+IF OBJECT_ID(N'[dbo].[typesOfModule]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[typesOfModule];
 GO
 IF OBJECT_ID(N'[dbo].[units]', 'U') IS NOT NULL
     DROP TABLE [dbo].[units];
 GO
-IF OBJECT_ID(N'[dbo].[upgradeReplacementSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[upgradeReplacementSets];
+IF OBJECT_ID(N'[dbo].[upgradesReplacements]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[upgradesReplacements];
+GO
+IF OBJECT_ID(N'[dbo].[moduleCharacteristics]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[moduleCharacteristics];
+GO
+IF OBJECT_ID(N'[dbo].[employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[employees];
+GO
+IF OBJECT_ID(N'[dbo].[positions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[positions];
+GO
+IF OBJECT_ID(N'[dbo].[stagesOfImplementations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[stagesOfImplementations];
+GO
+IF OBJECT_ID(N'[dbo].[servicesExecution]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[servicesExecution];
 GO
 
 -- --------------------------------------------------
@@ -177,7 +240,8 @@ CREATE TABLE [dbo].[employees] (
     [phoneNumber] nvarchar(16)  NOT NULL,
     [positionId] int  NOT NULL,
     [login] nvarchar(60)  NOT NULL,
-    [password] nvarchar(max)  NOT NULL
+    [password] nvarchar(max)  NOT NULL,
+    [resetPassword] bit  NOT NULL
 );
 GO
 
@@ -315,7 +379,7 @@ ADD CONSTRAINT [FK_unitcharacteristic]
     FOREIGN KEY ([unitId])
     REFERENCES [dbo].[units]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_unitcharacteristic'
@@ -330,7 +394,7 @@ ADD CONSTRAINT [FK_characteristicmoduleCharacteristic]
     FOREIGN KEY ([characteristicId])
     REFERENCES [dbo].[characteristics]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_characteristicmoduleCharacteristic'
@@ -345,7 +409,7 @@ ADD CONSTRAINT [FK_modulemoduleCharacteristic]
     FOREIGN KEY ([moduleId])
     REFERENCES [dbo].[modules]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_modulemoduleCharacteristic'
@@ -360,7 +424,7 @@ ADD CONSTRAINT [FK_typeOfModulemodule]
     FOREIGN KEY ([typeOfModuleId])
     REFERENCES [dbo].[typesOfModule]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_typeOfModulemodule'
@@ -375,7 +439,7 @@ ADD CONSTRAINT [FK_moduleupgradeReplacement]
     FOREIGN KEY ([moduleId])
     REFERENCES [dbo].[modules]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_moduleupgradeReplacement'
@@ -390,7 +454,7 @@ ADD CONSTRAINT [FK_clientDeviceupgradeReplacement]
     FOREIGN KEY ([clientDeviceId])
     REFERENCES [dbo].[clientsDevices]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_clientDeviceupgradeReplacement'
@@ -405,7 +469,7 @@ ADD CONSTRAINT [FK_typeOfDeviceclientDevice]
     FOREIGN KEY ([typeOfDeviceId])
     REFERENCES [dbo].[typesOfDevices]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_typeOfDeviceclientDevice'
@@ -420,7 +484,7 @@ ADD CONSTRAINT [FK_clientDevicerequestedService]
     FOREIGN KEY ([clientDeviceId])
     REFERENCES [dbo].[clientsDevices]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_clientDevicerequestedService'
@@ -435,7 +499,7 @@ ADD CONSTRAINT [FK_servicerequestedService]
     FOREIGN KEY ([serviceId])
     REFERENCES [dbo].[services]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_servicerequestedService'
@@ -450,7 +514,7 @@ ADD CONSTRAINT [FK_contractclientDevice]
     FOREIGN KEY ([contractId])
     REFERENCES [dbo].[contracts]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_contractclientDevice'
@@ -465,7 +529,7 @@ ADD CONSTRAINT [FK_clientcontract]
     FOREIGN KEY ([clientId])
     REFERENCES [dbo].[clients]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_clientcontract'
@@ -480,7 +544,7 @@ ADD CONSTRAINT [FK_employeeupgradeReplacement]
     FOREIGN KEY ([employeeId])
     REFERENCES [dbo].[employees]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_employeeupgradeReplacement'
@@ -495,7 +559,7 @@ ADD CONSTRAINT [FK_positionemployee]
     FOREIGN KEY ([positionId])
     REFERENCES [dbo].[positions]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_positionemployee'
@@ -510,7 +574,7 @@ ADD CONSTRAINT [FK_stageOfImplementationrequestedService]
     FOREIGN KEY ([stageOfImplementationId])
     REFERENCES [dbo].[stagesOfImplementations]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_stageOfImplementationrequestedService'
@@ -525,7 +589,7 @@ ADD CONSTRAINT [FK_employeeserviceExecution]
     FOREIGN KEY ([employeeId])
     REFERENCES [dbo].[employees]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_employeeserviceExecution'
@@ -540,7 +604,7 @@ ADD CONSTRAINT [FK_requestedServiceserviceExecution]
     FOREIGN KEY ([requestedServiceId])
     REFERENCES [dbo].[requestedServices]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_requestedServiceserviceExecution'
