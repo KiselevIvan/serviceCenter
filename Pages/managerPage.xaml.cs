@@ -44,5 +44,12 @@ namespace serviceCenter.Pages
             f.ShowDialog(); //вызываем окно редактирования\добавления сотрудника
             updateDbGridClients();
         }
+
+        private void bAddContract_Click(object sender, RoutedEventArgs e)
+        {//обработчик кнопки Оформить заявку
+            Windows.contractWindow w = new Windows.contractWindow(dbGridClients.SelectedItem as client);
+            w.ShowDialog();
+
+        }
     }
 }

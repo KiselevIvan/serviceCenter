@@ -1,0 +1,77 @@
+﻿<Window x:Class="serviceCenter.Windows.contractWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:serviceCenter.Windows"
+        mc:Ignorable="d"
+        Title="contractWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.ColumnSpan="2" Content="Описание деталей заказа" HorizontalContentAlignment="Center"/>
+
+        <Label Content="Список устройств клиента:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <Label Content="Список услуг для отдельного устройства:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+        
+        <DataGrid Name="dgDevices" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding modelName}"/>
+                <DataGridTextColumn Header="Серийный номер" Binding="{Binding serialNumber}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid Name="dgServices" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding baseCost}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+         
+        <StackPanel  Grid.Row="3" Orientation="Horizontal">
+            <Button Name="bAddDevice" Content="Добавить" Click="bAddDevice_Click"/>
+            <Button Name="bEditDevice" Content="Редактировать" Click="bEditDevice_Click"/>
+            <Button Name="bDeleteDevice" Content="Удалить" Click="bDeleteDevice_Click"/>
+        </StackPanel>
+        
+        <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Button Name="bAddService" Content="Добавить"/>
+            <Button Name="bEditService" Content="Редактировать"/>
+            <Button Name="bDeleteSevice" Content="Удалить"/>
+        </StackPanel>
+        
+        <Grid Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Планируемая дата завершения: "/>
+            <Label Content="Приблизительная стоимость: " Grid.Row="1"/>
+            <DatePicker Grid.Column="1" Name="dptbApproximateEndDate" VerticalContentAlignment="Center"/>
+            <TextBox Name="tbApproximateEndCost" IsReadOnly="True" Grid.Row="1" Grid.Column="1" />
+        </Grid>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Оформить" Name="bOk" Click="bOk_Click" Margin="0,0,20,0"/>
+            <Button Content="Отменить" Name="bCancel" Click="bCancel_Click" Margin="20,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

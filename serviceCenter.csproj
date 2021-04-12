@@ -166,11 +166,20 @@
     <Compile Include="Windows\clientWindow.xaml.cs">
       <DependentUpon>clientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\DeviceWindow.xaml.cs">
+      <DependentUpon>DeviceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\contractWindow.xaml.cs">
+      <DependentUpon>contractWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\employeeWindow.xaml.cs">
       <DependentUpon>employeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\typeOfDeviceWindow.xaml.cs">
+      <DependentUpon>typeOfDeviceWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\userChangePasswordWindow.xaml.cs">
       <DependentUpon>userChangePasswordWindow.xaml</DependentUpon>
@@ -191,11 +200,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\DeviceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\contractWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\employeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\typeOfDeviceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

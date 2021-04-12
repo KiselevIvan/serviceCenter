@@ -1,0 +1,44 @@
+﻿<Window x:Class="serviceCenter.Windows.DeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:serviceCenter.Windows"
+        mc:Ignorable="d"
+        Title="DeviceWindow" Height="453.435" Width="800">
+    <Grid Margin="20,20,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.ColumnSpan="2" Content="Описание устройства клиента" HorizontalContentAlignment="Center"/>
+
+        <Label Grid.Row="1" Content="Тип устройства: "/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+            <ComboBox Name="cbTypeOfDevice" DisplayMemberPath="name" SelectedValuePath="id" Width="200"/>
+            <Button Name="bAddTypeOfDevice" Content="Добавить новый тип" Click="bAddTypeOfDevice_Click"/>
+        </StackPanel>
+
+        <Label Grid.Row="2" Content="Название модели: "/>
+        <TextBox Grid.Row="2" Grid.Column="2" Name="tbModelName"/>
+        <Label Grid.Row="3" Content="Серийный номер устройства: "/>
+        <TextBox Grid.Row="3" Grid.Column="2" Name="tbSerialNumber"/>
+        <Label Grid.Row="4" Content="Описание устройства: "/>
+        <TextBox Grid.Row="4" Grid.Column="2" Name="tbDescription" TextWrapping="Wrap"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="bOk" Content="Ок" Click="bOk_Click" Margin="0,0,20,0" Padding="10,0,10,0"/>
+            <Button Name="bCancel" Content="Отмена" Click="bCancel_Click" Margin="20,0,0,0" Padding="10,0,10,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
