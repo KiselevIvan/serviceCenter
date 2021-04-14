@@ -21,23 +21,24 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.ColumnSpan="2" Content="Описание деталей заказа" HorizontalContentAlignment="Center"/>
+        <Label Grid.ColumnSpan="2" Content="Описание деталей заявки" HorizontalContentAlignment="Center"/>
 
         <Label Content="Список устройств клиента:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
         <Label Content="Список услуг для отдельного устройства:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"/>
         
-        <DataGrid Name="dgDevices" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+        <DataGrid Name="dgDevices" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgDevices_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding modelName}"/>
                 <DataGridTextColumn Header="Серийный номер" Binding="{Binding serialNumber}"/>
+                <DataGridTextColumn Header="Тип устройства" Binding="{Binding typeOfDevice.name}"/>                
                 <DataGridTextColumn Header="Описание" Binding="{Binding description}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <DataGrid Name="dgServices" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
-                <DataGridTextColumn Header="Стоимость" Binding="{Binding baseCost}"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding service.name}"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding cost}"/>
             </DataGrid.Columns>
         </DataGrid>
          
@@ -48,9 +49,9 @@
         </StackPanel>
         
         <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <Button Name="bAddService" Content="Добавить"/>
+            <Button Name="bAddService" Content="Добавить" Click="bAddService_Click"/>
             <Button Name="bEditService" Content="Редактировать"/>
-            <Button Name="bDeleteSevice" Content="Удалить"/>
+            <Button Name="bDeleteSevice" Content="Удалить" Click="bDeleteSevice_Click"/>
         </StackPanel>
         
         <Grid Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center">
@@ -65,7 +66,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Планируемая дата завершения: "/>
             <Label Content="Приблизительная стоимость: " Grid.Row="1"/>
-            <DatePicker Grid.Column="1" Name="dptbApproximateEndDate" VerticalContentAlignment="Center"/>
+            <DatePicker Grid.Column="1" Name="dptbApproximateEndDate" VerticalContentAlignment="Center" SelectedDateChanged="dptbApproximateEndDate_SelectedDateChanged"/>
             <TextBox Name="tbApproximateEndCost" IsReadOnly="True" Grid.Row="1" Grid.Column="1" />
         </Grid>
 

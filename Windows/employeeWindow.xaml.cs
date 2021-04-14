@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Text.RegularExpressions;
 
 namespace serviceCenter.Windows
 {
@@ -75,12 +74,7 @@ namespace serviceCenter.Windows
             Close();
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {//перехват вводимых символов и проверка на наличие посторонние знаков
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-
-        }
+        
 
         private void CheckBoxChanged(object sender, RoutedEventArgs e)
         {//обработчик изменения состояния чекбокса смены пароля
@@ -88,6 +82,11 @@ namespace serviceCenter.Windows
                 grPasswordField.Height = GridLength.Auto;
             else//если не отмечено, то скрываем
                 grPasswordField.Height = new GridLength(0, GridUnitType.Star);
+        }
+
+        private void tbPhoneNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            controlInput.PhoneNumberValidationTextBox(sender, e);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace serviceCenter.Windows
             else
             {//если поля заполнены корректно, обновляем объектную модель
                 NewDevice = new clientDevice();
-                NewDevice.typeOfDeviceId = (cbTypeOfDevice.SelectedItem as typeOfDevice).Id;
+                NewDevice.typeOfDevice = (cbTypeOfDevice.SelectedItem as typeOfDevice);
                 NewDevice.modelName = tbModelName.Text;
                 NewDevice.serialNumber = tbSerialNumber.Text;
                 NewDevice.description = tbDescription.Text;

@@ -25,8 +25,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Name="DeleteButton" Click="DeleteButton_Click">Удалить</Button>
-                                            <Button Name="EditButton" Click="EditButton_Click">Редактировать</Button>
+                                            <Button Name="bEmployeeDelete" Click="bEmployeeDelete_Click">Удалить</Button>
+                                            <Button Name="bEmployeeEdit" Click="bEmployeeEdit_Click">Редактировать</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -36,7 +36,43 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
-                        <Button x:Name="bAddEmp" Content="Добавить сотрудника" Click="bAddEmp_Click"/>
+                        <Button x:Name="bEmployeeADD" Content="Добавить сотрудника" Click="bEmployeeADD_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Услуги">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <DataGrid  
+                  Name="dgServices" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True" 
+                  CanUserResizeRows="False" 
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" 
+                >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Название" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="Базовая цена" Binding="{Binding baseCost}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="bServicesDelete" Click="bServicesDelete_Click">Удалить</Button>
+                                            <Button Name="bServicesEditButton" Click="bServicesEditButton_Click">Редактировать</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button Name="bServiceAdd" Content="Добавить услугу" Click="bServiceAdd_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

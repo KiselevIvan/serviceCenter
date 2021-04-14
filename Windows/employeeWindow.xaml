@@ -32,7 +32,7 @@
         <Label HorizontalContentAlignment="Right" Grid.Row="5" Content="Временный пароль:"/>
         
         <TextBox Grid.Column="1" Name="tbFIO" VerticalContentAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="tbPhoneNumber" PreviewTextInput="NumberValidationTextBox" VerticalContentAlignment="Center" MaxLength="11"/>        
+        <TextBox Grid.Column="1" Grid.Row="1" Name="tbPhoneNumber" PreviewTextInput="tbPhoneNumber_PreviewTextInput" VerticalContentAlignment="Center" MaxLength="11"/>        
         <ComboBox DisplayMemberPath="name" SelectedValuePath="id" Grid.Column="1" Grid.Row="2" Name="cbPosition" />
         <TextBox Grid.Column="1" Grid.Row="3" Name="tbLogin" VerticalContentAlignment="Center"/>
         <CheckBox Name="chbResetPassword" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" Grid.Row="4" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged"/>

@@ -16,7 +16,7 @@
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Name="dbGridClients" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                    <DataGrid Name="dbGridClients" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dbGridClients_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}"/>
                             <DataGridTextColumn Header="Номер телефона" Binding="{Binding phoneNumber}"/>

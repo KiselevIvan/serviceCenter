@@ -28,6 +28,7 @@ namespace serviceCenter.Pages
             InitializeComponent();
             dbGridEmployee.ItemsSource = core.serviceCenterDB.employees.ToList(); //устанавливаем источник данных для таблицы сотрудники                        
             updateDbGridClients();
+            bAddContract.IsEnabled = false;
         }
 
         private void bAddClient_Click(object sender, RoutedEventArgs e)
@@ -50,6 +51,12 @@ namespace serviceCenter.Pages
             Windows.contractWindow w = new Windows.contractWindow(dbGridClients.SelectedItem as client);
             w.ShowDialog();
 
+        }
+
+
+        private void dbGridClients_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            bAddContract.IsEnabled = dbGridClients.SelectedItem != null;
         }
     }
 }
