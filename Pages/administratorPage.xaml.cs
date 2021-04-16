@@ -95,5 +95,15 @@ namespace serviceCenter.Pages
             else
                 MessageBox.Show("Услуга для редактирования не выбрана");
         }
+
+        private void bServiceUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            updateDBGridServices();
+        }
+
+        private void bEmployeeUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            updateDbGridEmployee();
+        }
     }
 }

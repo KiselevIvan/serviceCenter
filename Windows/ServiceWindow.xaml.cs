@@ -34,14 +34,18 @@ namespace serviceCenter.Windows
 
         private void bOk_Click(object sender, RoutedEventArgs e)
         {//обработчик кнопки Ок 
-            if (String.IsNullOrWhiteSpace(tbName.Text) | String.IsNullOrWhiteSpace(tbBaseCost.Text)) //если поля заполнены не корректно
+            Int32 cost;
+            if (String.IsNullOrWhiteSpace(tbName.Text) | 
+                String.IsNullOrWhiteSpace(tbBaseCost.Text)|
+                !Int32.TryParse(tbBaseCost.Text,out cost)
+                ) //если поля заполнены не корректно
                 MessageBox.Show("Введены не корректные даные");
             else
             {//если поля заполнены корректно
                 if (Service==null)
                 Service = new service();
                 Service.name = tbName.Text;
-                Service.baseCost = Convert.ToInt32(tbBaseCost.Text);
+                Service.baseCost = cost;
                 DialogResult = true;
                 Close();
             }
@@ -51,16 +55,11 @@ namespace serviceCenter.Windows
         {//Обработчик кнопки отмена
             DialogResult = false;
             Close();
-        }
-
-        private void tbBaseCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {//обработчик ввода символов в поле базовая стоимость
-            controlInput.DigitNumberValidationTextBox(sender, e);
-        }
+        }        
 
         private void tbBaseCost_PreviewKeyDown(object sender, KeyEventArgs e)
         {//обработчик события преднажатие клавиши
-            e.Handled=e.Key == Key.Space;
+            controlInput.DigitNumberValidationTextBox(sender, e);
         }
     }
 }

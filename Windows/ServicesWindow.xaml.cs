@@ -55,14 +55,9 @@ namespace serviceCenter.Windows
             bOk.IsEnabled = dgServices.SelectedItem != null; //если выделена услуга включаем кнопку Добавить
         }
 
-        private void tbCost_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {//обработчик ввода текста в поле стоимость
-            controlInput.DigitNumberValidationTextBox(sender, e);
-        }
-
         private void tbCost_PreviewKeyDown(object sender, KeyEventArgs e)
         {//обработчик события преднажатие клавиши
-                e.Handled = e.Key == Key.Space;            
+            controlInput.DigitNumberValidationTextBox(sender, e);
         }
     }
 }

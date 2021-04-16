@@ -5,42 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:serviceCenter.Windows"
         mc:Ignorable="d"
-        WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterScreen" d:DesignHeight="269.5" d:DesignWidth="466.5">
-    <Grid Margin="40,30,40,10">
+        WindowStyle="None"        
+        WindowStartupLocation="CenterScreen" Height="220" Width="400">
+    
+        <Grid Margin="30,30,30,0">            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="1*"/>            
-        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="0" Name="grPasswordField"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
         
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="0" Name="grPasswordField"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-
         <Label HorizontalContentAlignment="Right" Content="ФИО:" />
         <Label HorizontalContentAlignment="Right" Grid.Row="1" Content="Номер телефона:"/>
         <Label HorizontalContentAlignment="Right" Grid.Row="2" Content="Должность:"/>
         <Label HorizontalContentAlignment="Right" Grid.Row="3" Content="Логин:"/>
         <Label HorizontalContentAlignment="Right" Grid.Row="4" Content="Сбросить пароль:"/>
         <Label HorizontalContentAlignment="Right" Grid.Row="5" Content="Временный пароль:"/>
-        
-        <TextBox Grid.Column="1" Name="tbFIO" VerticalContentAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Name="tbPhoneNumber" PreviewTextInput="tbPhoneNumber_PreviewTextInput" VerticalContentAlignment="Center" MaxLength="11"/>        
+
+        <TextBox Grid.Column="1" MaxLength="160" Name="tbFIO" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" MaxLength="11" Grid.Row="1" Name="tbPhoneNumber" PreviewKeyDown="tbPhoneNumber_PreviewKeyDown" VerticalContentAlignment="Center"/>
         <ComboBox DisplayMemberPath="name" SelectedValuePath="id" Grid.Column="1" Grid.Row="2" Name="cbPosition" />
-        <TextBox Grid.Column="1" Grid.Row="3" Name="tbLogin" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" MaxLength="60" Grid.Row="3" Name="tbLogin" VerticalContentAlignment="Center"/>
         <CheckBox Name="chbResetPassword" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" Grid.Row="4" Checked="CheckBoxChanged" Unchecked="CheckBoxChanged"/>
         <PasswordBox Grid.Column="1" Grid.Row="5" Name="pbPass"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button Margin="0,0,5,0" Padding="5" Content="Ок" x:Name="bOk" Click="bOk_Click"/>
-            <Button Margin="5,0,0,0" Padding="5" Content="Отмена" x:Name="bCancel" Click="bCancel_Click"/>
-        </StackPanel>
-    </Grid>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="6" Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button Margin="0,0,5,0" Padding="5" Content="Ок" x:Name="bOk" Click="bOk_Click"/>
+                <Button Margin="5,0,0,0" Padding="5" Content="Отмена" x:Name="bCancel" Click="bCancel_Click"/>
+            </StackPanel>
+        </Grid>
+
 </Window>

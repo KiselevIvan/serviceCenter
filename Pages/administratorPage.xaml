@@ -36,7 +36,8 @@
                     </DataGrid>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
-                        <Button x:Name="bEmployeeADD" Content="Добавить сотрудника" Click="bEmployeeADD_Click"/>
+                        <Button Name="bEmployeeADD" Content="Добавить сотрудника" Click="bEmployeeADD_Click"/>
+                        <Button Name="bEmployeeUpdate" Content="Обновить список" Click="bEmployeeUpdate_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -73,6 +74,7 @@
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
                         <Button Name="bServiceAdd" Content="Добавить услугу" Click="bServiceAdd_Click"/>
+                        <Button Name="bServiceUpdate" Content="Обновить список" Click="bServiceUpdate_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>
