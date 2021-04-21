@@ -33,7 +33,8 @@
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
                         <Button x:Name="bAddClient" Content="Добавить клиента" Click="bAddClient_Click"/>
-                        <Button x:Name="bAddContract" Content="Оформить заявку" Click="bAddContract_Click" />
+                        <Button x:Name="bAddContract" Content="Сформировать договор" Click="bAddContract_Click" />
+                        <Button Name="bUpdateClientsList" Content="Обновить список" Click="bUpdateClientsList_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

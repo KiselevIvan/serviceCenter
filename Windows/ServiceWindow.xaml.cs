@@ -17,7 +17,6 @@ namespace serviceCenter.Windows
     public partial class ServiceWindow : Window
     {//окно добавление\редактирования услуги
         public service Service { get; private set; }
-
         public ServiceWindow()
         {//конструктор по умолчанию
             InitializeComponent();
@@ -30,6 +29,7 @@ namespace serviceCenter.Windows
             this.Service = service;
             tbName.Text = service.name;
             tbBaseCost.Text = service.baseCost.ToString();
+            bOk.Content = "Сохранить";
         }
 
         private void bOk_Click(object sender, RoutedEventArgs e)

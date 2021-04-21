@@ -26,23 +26,29 @@ namespace serviceCenter.Windows
             cbTypeOfDevice.ItemsSource = core.serviceCenterDB.typesOfDevices.ToList();
         }
 
+        private void updateTypesList()
+        {
+            cbTypeOfDevice.ItemsSource = core.serviceCenterDB.typesOfDevices.ToList();
+        }
+
         public DeviceWindow(ref contract contract,ref clientDevice clientDevice)
         {//редактировать существующее описание устройства, 1 параметр ссылка на договор, 2 параметр ссылка на редактируемое описание
             InitializeComponent();
-            this.contractId = contract.Id;
-            cbTypeOfDevice.ItemsSource = core.serviceCenterDB.typesOfDevices.ToList();
+            this.contractId = contract.Id;            
             NewDevice = clientDevice;
             //заполняем поля для ввода существующими данными
-            cbTypeOfDevice.SelectedIndex = NewDevice.typeOfDeviceId - 1;
+            cbTypeOfDevice.SelectedItem = clientDevice.typeOfDevice;
             tbModelName.Text = NewDevice.modelName;
             tbSerialNumber.Text = NewDevice.serialNumber;
             tbDescription.Text = NewDevice.description;
+            updateTypesList();
         }
 
         private void bAddTypeOfDevice_Click(object sender, RoutedEventArgs e)
         {//обработчик кнопки Добавить новый тип 
             Windows.typeOfDeviceWindow w = new typeOfDeviceWindow(); //окно для добавления нового типа
             w.ShowDialog();
+            updateTypesList();
         }
 
         public bool SetDeviceData()

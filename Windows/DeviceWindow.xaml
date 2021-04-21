@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:serviceCenter.Windows"
         mc:Ignorable="d"
-        Title="DeviceWindow" Height="453.435" Width="800">
+        Height="440" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <Grid Margin="20,20,20,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,13 +32,13 @@
         </StackPanel>
 
         <Label Grid.Row="2" Content="Название модели: "/>
-        <TextBox Grid.Row="2" Grid.Column="2" Name="tbModelName"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Name="tbModelName" MaxLength="150"/>
         <Label Grid.Row="3" Content="Серийный номер устройства: "/>
-        <TextBox Grid.Row="3" Grid.Column="2" Name="tbSerialNumber"/>
+        <TextBox Grid.Row="3" Grid.Column="2" Name="tbSerialNumber" MaxLength="50"/>
         <Label Grid.Row="4" Content="Описание устройства: "/>
         <TextBox Grid.Row="4" Grid.Column="2" Name="tbDescription" TextWrapping="Wrap"/>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button Name="bOk" Content="Ок" Click="bOk_Click" Margin="0,0,20,0" Padding="10,0,10,0"/>
             <Button Name="bCancel" Content="Отмена" Click="bCancel_Click" Margin="20,0,0,0" Padding="10,0,10,0"/>
         </StackPanel>

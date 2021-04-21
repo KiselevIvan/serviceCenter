@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:serviceCenter.Windows"
         mc:Ignorable="d"
-        Title="typeOfDeviceWindow" Height="170" Width="400">
-    <Grid Margin="20">
+        Height="150" Width="300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
@@ -20,8 +22,8 @@
 
         <Label Content="Добавление нового типа устройства" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
         <Label Grid.Row="1" Content="Название:"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Name="tbName"/>
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+        <TextBox Grid.Row="1" Grid.Column="1" Name="tbName" MaxLength="60"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,10">
         <Button  Name="bOk" Content="Добавить" Click="bOk_Click" Margin="0,0,10,0"/>
         <Button  Name="bCancel" Content="Отмена" Click="bCancel_Click" Margin="10,0,0,0"/>
             </StackPanel>

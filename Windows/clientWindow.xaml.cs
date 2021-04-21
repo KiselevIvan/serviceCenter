@@ -47,26 +47,31 @@ namespace serviceCenter.Windows
         private void bOk_Click(object sender, RoutedEventArgs e)
         {//обработчик кнопки ок
             //заполняем поля модели бд
-            currentClient.FIO = tbFIO.Text;
-            currentClient.phoneNumber = tbPhoneNumber.Text;
+            if (String.IsNullOrWhiteSpace(tbFIO.Text) | String.IsNullOrWhiteSpace(tbPhoneNumber.Text))//проверка данных полей
+                MessageBox.Show("Введены не корректные данные");
+            else
+            {
+                currentClient.FIO = tbFIO.Text;
+                currentClient.phoneNumber = tbPhoneNumber.Text;
 
-            if (add)
-            {//если установлен флаг добавления, добавляем нового клиента в модель бд
-                core.serviceCenterDB.clients.Add(currentClient);
+                if (add)
+                {//если установлен флаг добавления, добавляем нового клиента в модель бд
+                    core.serviceCenterDB.clients.Add(currentClient);
+                }
+                //сохраняем изменение данных на сервер и закрываем окно
+                core.serviceCenterDB.SaveChanges();
+                Close();
             }
-            //сохраняем изменение данных на сервер и закрываем окно
-            core.serviceCenterDB.SaveChanges();
-            Close();
         }
 
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {//обработчик кнопки отмена
             Close();
         }
-
-        private void tbPhoneNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            controlInput.PhoneNumberValidationTextBox(sender, e);
+        
+        private void tbPhoneNumber_PreviewKeyDown(object sender, KeyEventArgs e)
+        {//Перехват нажатия клавишь и проверка на корректность вводимых символов
+            controlInput.DigitNumberValidationTextBox(sender, e);
         }
     }
 }

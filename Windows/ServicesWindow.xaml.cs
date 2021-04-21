@@ -21,18 +21,34 @@ namespace serviceCenter.Windows
         public String Description { get; private set; }
 
         public ServicesWindow()
-        {
+        {//конструктор для добавления услуги
             InitializeComponent();
             dgServices.ItemsSource = core.serviceCenterDB.services.ToList(); 
             //указываем источник данных для списка услуг
             bOk.IsEnabled = false;
         }
 
+        public ServicesWindow(requestedService rs)
+        {//конструктор для редактирования
+            InitializeComponent();
+            dgServices.ItemsSource = core.serviceCenterDB.services.ToList();
+            //указываем источник данных для списка услуг
+            bOk.IsEnabled = false;
+            dgServices.SelectedItem = rs.service;
+            tbCost.Text = rs.cost.ToString();
+            tbDescription.Text = rs.description;
+            bOk.Content = "Сохранить";
+        }
+
         private void bOk_Click(object sender, RoutedEventArgs e)
         {//Обработчик кнопки Добавить
-            if (dgServices.SelectedItem != null | String.IsNullOrWhiteSpace(tbDescription.Text) | String.IsNullOrWhiteSpace(tbCost.Text))
+            Int32 cost;
+            if (dgServices.SelectedItem != null &
+                !String.IsNullOrWhiteSpace(tbDescription.Text) &
+                !String.IsNullOrWhiteSpace(tbCost.Text)&
+                Int32.TryParse(tbCost.Text, out cost))
             {//если все поля заполнены
-                Cost = Convert.ToInt32(tbCost.Text);
+                Cost = cost;
                 Description = tbDescription.Text;
                 DialogResult = true;
                 Service = dgServices.SelectedItem as service;

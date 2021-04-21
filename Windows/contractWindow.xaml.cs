@@ -25,7 +25,16 @@ namespace serviceCenter.Windows
             this.client = client;
             contract = new contract();
             controlBokEnable();
-            controlBAddServiceEnable();
+            controlButtonsEnable();
+
+        }
+
+        private void controlButtonsEnable()
+        {
+            bDeleteDevice.IsEnabled = bEditDevice.IsEnabled = dgDevices.SelectedItem != null;
+            bAddService.IsEnabled = (dgDevices.SelectedItem != null);
+            bEditService.IsEnabled = bDeleteSevice.IsEnabled = dgServices.SelectedItem != null;
+            
         }
 
         private void updateDbGridClientDevices()
@@ -41,11 +50,6 @@ namespace serviceCenter.Windows
         private void controlBokEnable()
         {//метод для включения и выключения активности кнопки "Оформить", включаем кнопку когда все данные внесены
             bOk.IsEnabled = ((dgDevices.Items.Count > 0) & (dgServices.Items.Count > 0) & (dptbApproximateEndDate.SelectedDate != null));
-        }
-
-        private void controlBAddServiceEnable()
-        {//метод для включения и выключения кнопки "добавить" услугу, включаем когда выбрано устройство
-            bAddService.IsEnabled = (dgDevices.SelectedItem!= null);
         }
 
         private void bOk_Click(object sender, RoutedEventArgs e)
@@ -71,6 +75,7 @@ namespace serviceCenter.Windows
             contract.clientDevices.Add(f.NewDevice); //добавляем новое описание устройства к текущему договору
             updateDbGridClientDevices(); //обновляем список устройств
             controlBokEnable();
+            controlButtonsEnable();
         }
 
         private void bDeleteDevice_Click(object sender, RoutedEventArgs e)
@@ -78,20 +83,24 @@ namespace serviceCenter.Windows
             contract.clientDevices.Remove(dgDevices.SelectedItem as clientDevice); //удаляем описание утройства из текущего договора
             updateDbGridClientDevices(); //обновляем список устройств
             controlBokEnable();
+            controlButtonsEnable();
         }
 
         private void bEditDevice_Click(object sender, RoutedEventArgs e)
         {//Обработчик кнопки "Редактировать" описание устройства
-            clientDevice editableDevice = dgDevices.SelectedItem as clientDevice; // выделяем текущее описание 
-            Windows.DeviceWindow w = new DeviceWindow(ref contract,ref editableDevice); //окно для редактирования описания
-            w.ShowDialog();
-            if (w.DialogResult == true) //если редактирование описание было выполнено
-            { //находим текущее описание объектной модели и обновляем описание свойств
-                contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().typeOfDevice =w.NewDevice.typeOfDevice;
-                contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().modelName =w.NewDevice.modelName;
-                contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().serialNumber =w.NewDevice.serialNumber;
-                contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().description =w.NewDevice.description;
-                updateDbGridClientDevices(); //обновляем список устройств
+            if (dgDevices.SelectedItem != null)
+            {
+                clientDevice editableDevice = dgDevices.SelectedItem as clientDevice; // выделяем текущее описание 
+                Windows.DeviceWindow w = new DeviceWindow(ref contract, ref editableDevice); //окно для редактирования описания
+                w.ShowDialog();
+                if (w.DialogResult == true) //если редактирование описание было выполнено
+                { //находим текущее описание объектной модели и обновляем описание свойств
+                    contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().typeOfDevice = w.NewDevice.typeOfDevice;
+                    contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().modelName = w.NewDevice.modelName;
+                    contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().serialNumber = w.NewDevice.serialNumber;
+                    contract.clientDevices.Where(d => d.serialNumber == editableDevice.serialNumber).FirstOrDefault().description = w.NewDevice.description;
+                    updateDbGridClientDevices(); //обновляем список устройств
+                }
             }
         }
 
@@ -113,6 +122,7 @@ namespace serviceCenter.Windows
                 tbApproximateEndCost.Text = contract.approximateCost.ToString();
                 updateDbGridService(ref currentdevice); //обновляем список услуг для данного устройства
                 controlBokEnable();
+                controlButtonsEnable();
             }
         }
 
@@ -123,7 +133,7 @@ namespace serviceCenter.Windows
                 clientDevice device = dgDevices.SelectedItem as clientDevice;
                 updateDbGridService(ref device); //обновляем список услуг
             }
-            controlBAddServiceEnable();
+            controlButtonsEnable();
         }
 
         private void dptbApproximateEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -142,7 +152,42 @@ namespace serviceCenter.Windows
                 currentdevice.requestedServices.Remove(rs);
                 updateDbGridService(ref currentdevice);
                 tbApproximateEndCost.Text = contract.approximateCost.ToString();
+                controlButtonsEnable();
             }
+        }
+
+        private void bEditService_Click(object sender, RoutedEventArgs e)
+        {//обработчик кнопки "редактировать" услугу
+            requestedService rs = dgServices.SelectedItem as requestedService;
+            if (rs == null)
+                MessageBox.Show("выберите услугу");
+            else
+            {                /*clientDevice currentdevice = dgDevices.SelectedItem as clientDevice; //выбираем текущее устройство                    
+                 = currentdevice.requestedServices.Where(r => r.service == currentService).FirstOrDefault();
+                */
+                Windows.ServicesWindow w = new ServicesWindow(rs);
+                w.ShowDialog();
+                if (w.DialogResult == true) //если пользователь завершил ввод
+                {                     
+                    contract.approximateCost -= rs.cost;//вычетаем прежнюю стоимость услуги
+                    rs.service = w.Service;
+                    rs.cost = w.Cost;
+                    rs.description = w.Description;
+                    rs.stageOfImplementationId = 1;
+                    
+                    contract.approximateCost += w.Cost; //добавляем стоимость услуги к общей стоимости
+                    tbApproximateEndCost.Text = contract.approximateCost.ToString();
+                    clientDevice currentDevice = rs.clientDevice;
+                    updateDbGridService(ref currentDevice); //обновляем список услуг для данного устройства
+                    controlBokEnable();
+                    controlButtonsEnable();
+                }
+            }
+        }
+
+        private void dgServices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            controlButtonsEnable();
         }
     }
 }

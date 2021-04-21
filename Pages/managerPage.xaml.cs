@@ -58,5 +58,10 @@ namespace serviceCenter.Pages
         {
             bAddContract.IsEnabled = dbGridClients.SelectedItem != null;
         }
+
+        private void bUpdateClientsList_Click(object sender, RoutedEventArgs e)
+        {
+            updateDbGridClients();
+        }
     }
 }

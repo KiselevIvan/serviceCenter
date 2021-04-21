@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:serviceCenter.Windows"
         mc:Ignorable="d"
-        Title="contractWindow" Height="450" Width="800">
+        Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -21,7 +23,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.ColumnSpan="2" Content="Описание деталей заявки" HorizontalContentAlignment="Center"/>
+        <Label Grid.ColumnSpan="2" Content="Описание деталей договора" HorizontalContentAlignment="Center"/>
 
         <Label Content="Список устройств клиента:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1"/>
         <Label Content="Список услуг для отдельного устройства:" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"/>
@@ -35,10 +37,11 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DataGrid Name="dgServices" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+        <DataGrid Name="dgServices" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgServices_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding service.name}"/>
                 <DataGridTextColumn Header="Стоимость" Binding="{Binding cost}"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding description}"/>
             </DataGrid.Columns>
         </DataGrid>
          
@@ -50,7 +53,7 @@
         
         <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <Button Name="bAddService" Content="Добавить" Click="bAddService_Click"/>
-            <Button Name="bEditService" Content="Редактировать"/>
+            <Button Name="bEditService" Content="Редактировать" Click="bEditService_Click"/>
             <Button Name="bDeleteSevice" Content="Удалить" Click="bDeleteSevice_Click"/>
         </StackPanel>
         
@@ -70,7 +73,7 @@
             <TextBox Name="tbApproximateEndCost" IsReadOnly="True" Grid.Row="1" Grid.Column="1" />
         </Grid>
 
-        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,10">
             <Button Content="Оформить" Name="bOk" Click="bOk_Click" Margin="0,0,20,0"/>
             <Button Content="Отменить" Name="bCancel" Click="bCancel_Click" Margin="20,0,0,0"/>
         </StackPanel>
