@@ -4,460 +4,511 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="serviceCenterModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="serviceCenterModelStoreContainer">
-    <EntitySet Name="characteristics" EntityType="serviceCenterModel.Store.characteristics" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="clientsDevices" EntityType="serviceCenterModel.Store.clientsDevices" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="clients" EntityType="serviceCenterModel.Store.clients" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="contracts" EntityType="serviceCenterModel.Store.contracts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="modules" EntityType="serviceCenterModel.Store.modules" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="requestedServices" EntityType="serviceCenterModel.Store.requestedServices" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="services" EntityType="serviceCenterModel.Store.services" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="typesOfDevices" EntityType="serviceCenterModel.Store.typesOfDevices" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="typesOfModule" EntityType="serviceCenterModel.Store.typesOfModule" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="units" EntityType="serviceCenterModel.Store.units" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="upgradesReplacements" EntityType="serviceCenterModel.Store.upgradesReplacements" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="moduleCharacteristics" EntityType="serviceCenterModel.Store.moduleCharacteristics" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="employees" EntityType="serviceCenterModel.Store.employees" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="positions" EntityType="serviceCenterModel.Store.positions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="stagesOfImplementations" EntityType="serviceCenterModel.Store.stagesOfImplementations" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="servicesExecution" EntityType="serviceCenterModel.Store.servicesExecution" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="unitcharacteristic" Association="serviceCenterModel.Store.unitcharacteristic">
-      <End Role="unit" EntitySet="units" />
-      <End Role="characteristic" EntitySet="characteristics" />
-    </AssociationSet>
-    <AssociationSet Name="characteristicmoduleCharacteristic" Association="serviceCenterModel.Store.characteristicmoduleCharacteristic">
-      <End Role="characteristic" EntitySet="characteristics" />
-      <End Role="moduleCharacteristic" EntitySet="moduleCharacteristics" />
-    </AssociationSet>
-    <AssociationSet Name="modulemoduleCharacteristic" Association="serviceCenterModel.Store.modulemoduleCharacteristic">
-      <End Role="module" EntitySet="modules" />
-      <End Role="moduleCharacteristic" EntitySet="moduleCharacteristics" />
-    </AssociationSet>
-    <AssociationSet Name="typeOfModulemodule" Association="serviceCenterModel.Store.typeOfModulemodule">
-      <End Role="typeOfModule" EntitySet="typesOfModule" />
-      <End Role="module" EntitySet="modules" />
-    </AssociationSet>
-    <AssociationSet Name="moduleupgradeReplacement" Association="serviceCenterModel.Store.moduleupgradeReplacement">
-      <End Role="module" EntitySet="modules" />
-      <End Role="upgradeReplacement" EntitySet="upgradesReplacements" />
-    </AssociationSet>
-    <AssociationSet Name="clientDeviceupgradeReplacement" Association="serviceCenterModel.Store.clientDeviceupgradeReplacement">
-      <End Role="clientDevice" EntitySet="clientsDevices" />
-      <End Role="upgradeReplacement" EntitySet="upgradesReplacements" />
-    </AssociationSet>
-    <AssociationSet Name="typeOfDeviceclientDevice" Association="serviceCenterModel.Store.typeOfDeviceclientDevice">
-      <End Role="typeOfDevice" EntitySet="typesOfDevices" />
-      <End Role="clientDevice" EntitySet="clientsDevices" />
-    </AssociationSet>
-    <AssociationSet Name="clientDevicerequestedService" Association="serviceCenterModel.Store.clientDevicerequestedService">
-      <End Role="clientDevice" EntitySet="clientsDevices" />
-      <End Role="requestedService" EntitySet="requestedServices" />
-    </AssociationSet>
-    <AssociationSet Name="servicerequestedService" Association="serviceCenterModel.Store.servicerequestedService">
-      <End Role="service" EntitySet="services" />
-      <End Role="requestedService" EntitySet="requestedServices" />
-    </AssociationSet>
-    <AssociationSet Name="contractclientDevice" Association="serviceCenterModel.Store.contractclientDevice">
-      <End Role="contract" EntitySet="contracts" />
-      <End Role="clientDevice" EntitySet="clientsDevices" />
-    </AssociationSet>
-    <AssociationSet Name="clientcontract" Association="serviceCenterModel.Store.clientcontract">
-      <End Role="client" EntitySet="clients" />
-      <End Role="contract" EntitySet="contracts" />
-    </AssociationSet>
-    <AssociationSet Name="employeeupgradeReplacement" Association="serviceCenterModel.Store.employeeupgradeReplacement">
-      <End Role="employee" EntitySet="employees" />
-      <End Role="upgradeReplacement" EntitySet="upgradesReplacements" />
-    </AssociationSet>
-    <AssociationSet Name="positionemployee" Association="serviceCenterModel.Store.positionemployee">
-      <End Role="position" EntitySet="positions" />
-      <End Role="employee" EntitySet="employees" />
-    </AssociationSet>
-    <AssociationSet Name="stageOfImplementationrequestedService" Association="serviceCenterModel.Store.stageOfImplementationrequestedService">
-      <End Role="stageOfImplementation" EntitySet="stagesOfImplementations" />
-      <End Role="requestedService" EntitySet="requestedServices" />
-    </AssociationSet>
-    <AssociationSet Name="employeeserviceExecution" Association="serviceCenterModel.Store.employeeserviceExecution">
-      <End Role="employee" EntitySet="employees" />
-      <End Role="serviceExecution" EntitySet="servicesExecution" />
-    </AssociationSet>
-    <AssociationSet Name="requestedServiceserviceExecution" Association="serviceCenterModel.Store.requestedServiceserviceExecution">
-      <End Role="requestedService" EntitySet="requestedServices" />
-      <End Role="serviceExecution" EntitySet="servicesExecution" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="characteristics">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="unitId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="clientsDevices">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="modelName" Type="nvarchar" Nullable="false" MaxLength="150" />
-    <Property Name="serialNumber" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="typeOfDeviceId" Type="int" Nullable="false" />
-    <Property Name="contractId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="clients">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FIO" Type="nvarchar" Nullable="false" MaxLength="160" />
-    <Property Name="phoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
-  </EntityType>
-  <EntityType Name="contracts">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="dateOfReceipt" Type="datetime" Nullable="false" />
-    <Property Name="approximateEndDate" Type="datetime" Nullable="false" />
-    <Property Name="endDate" Type="datetime" Nullable="true" />
-    <Property Name="approximateCost" Type="int" Nullable="false" />
-    <Property Name="endCost" Type="int" Nullable="true" />
-    <Property Name="clientId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="modules">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
-    <Property Name="numberInStock" Type="smallint" Nullable="false" DefaultValue="0" />
-    <Property Name="needToOrder" Type="smallint" Nullable="false" DefaultValue="0" />
-    <Property Name="safetyStock" Type="smallint" Nullable="false" DefaultValue="0" />
-    <Property Name="typeOfModuleId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="requestedServices">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cost" Type="int" Nullable="false" DefaultValue="0" />
-    <Property Name="clientDeviceId" Type="int" Nullable="false" />
-    <Property Name="serviceId" Type="int" Nullable="false" />
-    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="stageOfImplementationId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="services">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="160" />
-    <Property Name="baseCost" Type="int" Nullable="false" DefaultValue="0" />
-  </EntityType>
-  <EntityType Name="typesOfDevices">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="60" />
-  </EntityType>
-  <EntityType Name="typesOfModule">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="units">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="10" />
-  </EntityType>
-  <EntityType Name="upgradesReplacements">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="modulePrice" Type="int" Nullable="false" DefaultValue="0" />
-    <Property Name="moduleId" Type="int" Nullable="false" />
-    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="clientDeviceId" Type="int" Nullable="false" />
-    <Property Name="employeeId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="moduleCharacteristics">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="characteristicId" Type="int" Nullable="false" />
-    <Property Name="moduleId" Type="int" Nullable="false" />
-    <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="70" />
-  </EntityType>
-  <EntityType Name="employees">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FIO" Type="nvarchar" Nullable="false" MaxLength="160" />
-    <Property Name="phoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
-    <Property Name="positionId" Type="int" Nullable="false" />
-    <Property Name="login" Type="nvarchar" Nullable="false" MaxLength="60" />
-    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="resetPassword" Type="bit" Nullable="false" DefaultValue="false" />
-  </EntityType>
-  <EntityType Name="positions">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="stagesOfImplementations">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="60" />
-  </EntityType>
-  <EntityType Name="servicesExecution">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="employeeId" Type="int" Nullable="false" />
-    <Property Name="requestedServiceId" Type="int" Nullable="false" />
-    <Property Name="dateOfBegin" Type="datetime" Nullable="false" />
-    <Property Name="dateOfEnd" Type="datetime" Nullable="true" />
-  </EntityType>
-  <Association Name="unitcharacteristic">
-    <End Role="unit" Type="serviceCenterModel.Store.units" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="characteristic" Type="serviceCenterModel.Store.characteristics" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="unit">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="characteristic">
-        <PropertyRef Name="unitId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="characteristicmoduleCharacteristic">
-    <End Role="characteristic" Type="serviceCenterModel.Store.characteristics" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="moduleCharacteristic" Type="serviceCenterModel.Store.moduleCharacteristics" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="characteristic">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="moduleCharacteristic">
-        <PropertyRef Name="characteristicId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="modulemoduleCharacteristic">
-    <End Role="module" Type="serviceCenterModel.Store.modules" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="moduleCharacteristic" Type="serviceCenterModel.Store.moduleCharacteristics" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="module">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="moduleCharacteristic">
-        <PropertyRef Name="moduleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="typeOfModulemodule">
-    <End Role="typeOfModule" Type="serviceCenterModel.Store.typesOfModule" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="module" Type="serviceCenterModel.Store.modules" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="typeOfModule">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="module">
-        <PropertyRef Name="typeOfModuleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="moduleupgradeReplacement">
-    <End Role="module" Type="serviceCenterModel.Store.modules" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="upgradeReplacement" Type="serviceCenterModel.Store.upgradesReplacements" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="module">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="upgradeReplacement">
-        <PropertyRef Name="moduleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="clientDeviceupgradeReplacement">
-    <End Role="clientDevice" Type="serviceCenterModel.Store.clientsDevices" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="upgradeReplacement" Type="serviceCenterModel.Store.upgradesReplacements" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="clientDevice">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="upgradeReplacement">
-        <PropertyRef Name="clientDeviceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="typeOfDeviceclientDevice">
-    <End Role="typeOfDevice" Type="serviceCenterModel.Store.typesOfDevices" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="clientDevice" Type="serviceCenterModel.Store.clientsDevices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="typeOfDevice">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="clientDevice">
-        <PropertyRef Name="typeOfDeviceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="clientDevicerequestedService">
-    <End Role="clientDevice" Type="serviceCenterModel.Store.clientsDevices" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="requestedService" Type="serviceCenterModel.Store.requestedServices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="clientDevice">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="requestedService">
-        <PropertyRef Name="clientDeviceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="servicerequestedService">
-    <End Role="service" Type="serviceCenterModel.Store.services" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="requestedService" Type="serviceCenterModel.Store.requestedServices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="service">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="requestedService">
-        <PropertyRef Name="serviceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="contractclientDevice">
-    <End Role="contract" Type="serviceCenterModel.Store.contracts" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="clientDevice" Type="serviceCenterModel.Store.clientsDevices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="contract">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="clientDevice">
-        <PropertyRef Name="contractId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="clientcontract">
-    <End Role="client" Type="serviceCenterModel.Store.clients" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="contract" Type="serviceCenterModel.Store.contracts" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="client">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="contract">
-        <PropertyRef Name="clientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="employeeupgradeReplacement">
-    <End Role="employee" Type="serviceCenterModel.Store.employees" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="upgradeReplacement" Type="serviceCenterModel.Store.upgradesReplacements" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="employee">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="upgradeReplacement">
-        <PropertyRef Name="employeeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="positionemployee">
-    <End Role="position" Type="serviceCenterModel.Store.positions" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="employee" Type="serviceCenterModel.Store.employees" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="position">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="employee">
-        <PropertyRef Name="positionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="stageOfImplementationrequestedService">
-    <End Role="stageOfImplementation" Type="serviceCenterModel.Store.stagesOfImplementations" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="requestedService" Type="serviceCenterModel.Store.requestedServices" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="stageOfImplementation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="requestedService">
-        <PropertyRef Name="stageOfImplementationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="employeeserviceExecution">
-    <End Role="employee" Type="serviceCenterModel.Store.employees" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="serviceExecution" Type="serviceCenterModel.Store.servicesExecution" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="employee">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="serviceExecution">
-        <PropertyRef Name="employeeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="requestedServiceserviceExecution">
-    <End Role="requestedService" Type="serviceCenterModel.Store.requestedServices" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="serviceExecution" Type="serviceCenterModel.Store.servicesExecution" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="requestedService">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="serviceExecution">
-        <PropertyRef Name="requestedServiceId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="serviceCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="characteristics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="unitId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clientsDevices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modelName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="serialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="typeOfDeviceId" Type="int" Nullable="false" />
+          <Property Name="contractId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contracts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateOfReceipt" Type="datetime" Nullable="false" />
+          <Property Name="approximateEndDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="approximateCost" Type="int" Nullable="false" />
+          <Property Name="endCost" Type="int" />
+          <Property Name="clientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="positionId" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="resetPassword" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="moduleCharacteristics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="characteristicId" Type="int" Nullable="false" />
+          <Property Name="moduleId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="modules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="numberInStock" Type="smallint" Nullable="false" />
+          <Property Name="needToOrder" Type="smallint" Nullable="false" />
+          <Property Name="safetyStock" Type="smallint" Nullable="false" />
+          <Property Name="typeOfModuleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="positions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="requestedServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="clientDeviceId" Type="int" Nullable="false" />
+          <Property Name="serviceId" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="stageOfImplementationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="baseCost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicesExecution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+          <Property Name="requestedServiceId" Type="int" Nullable="false" />
+          <Property Name="dateOfBegin" Type="datetime" Nullable="false" />
+          <Property Name="dateOfEnd" Type="datetime" />
+          <Property Name="result" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stagesOfImplementations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="typesOfDevices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="typesOfModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="units">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="upgradesReplacements">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modulePrice" Type="int" Nullable="false" />
+          <Property Name="moduleId" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="clientDeviceId" Type="int" Nullable="false" />
+          <Property Name="employeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "serviceCenter.dbo.View_requestedServices" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_requestedServices">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="typeNeme" />
+            <PropertyRef Name="deviceName" />
+            <PropertyRef Name="deviceDescription" />
+            <PropertyRef Name="serviceName" />
+            <PropertyRef Name="serviceDescription" />
+            <PropertyRef Name="approximateEndDate" />
+            <PropertyRef Name="stages" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="typeNeme" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="deviceName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="deviceDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="serviceName" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="serviceDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="approximateEndDate" Type="datetime" Nullable="false" />
+          <Property Name="stages" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_characteristicmoduleCharacteristic">
+          <End Role="characteristics" Type="Self.characteristics" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="moduleCharacteristics" Type="Self.moduleCharacteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="characteristics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="moduleCharacteristics">
+              <PropertyRef Name="characteristicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clientcontract">
+          <End Role="clients" Type="Self.clients" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="contracts" Type="Self.contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="contracts">
+              <PropertyRef Name="clientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clientDevicerequestedService">
+          <End Role="clientsDevices" Type="Self.clientsDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="requestedServices" Type="Self.requestedServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientsDevices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="requestedServices">
+              <PropertyRef Name="clientDeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_clientDeviceupgradeReplacement">
+          <End Role="clientsDevices" Type="Self.clientsDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="upgradesReplacements" Type="Self.upgradesReplacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientsDevices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="upgradesReplacements">
+              <PropertyRef Name="clientDeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_contractclientDevice">
+          <End Role="contracts" Type="Self.contracts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="clientsDevices" Type="Self.clientsDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="contracts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="clientsDevices">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeeserviceExecution">
+          <End Role="employees" Type="Self.employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servicesExecution" Type="Self.servicesExecution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="servicesExecution">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employeeupgradeReplacement">
+          <End Role="employees" Type="Self.employees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="upgradesReplacements" Type="Self.upgradesReplacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="upgradesReplacements">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_modulemoduleCharacteristic">
+          <End Role="modules" Type="Self.modules" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="moduleCharacteristics" Type="Self.moduleCharacteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="moduleCharacteristics">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_moduleupgradeReplacement">
+          <End Role="modules" Type="Self.modules" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="upgradesReplacements" Type="Self.upgradesReplacements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="upgradesReplacements">
+              <PropertyRef Name="moduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_positionemployee">
+          <End Role="positions" Type="Self.positions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="employees">
+              <PropertyRef Name="positionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_requestedServiceserviceExecution">
+          <End Role="requestedServices" Type="Self.requestedServices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servicesExecution" Type="Self.servicesExecution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="requestedServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="servicesExecution">
+              <PropertyRef Name="requestedServiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_servicerequestedService">
+          <End Role="services" Type="Self.services" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="requestedServices" Type="Self.requestedServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="requestedServices">
+              <PropertyRef Name="serviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stageOfImplementationrequestedService">
+          <End Role="stagesOfImplementations" Type="Self.stagesOfImplementations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="requestedServices" Type="Self.requestedServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stagesOfImplementations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="requestedServices">
+              <PropertyRef Name="stageOfImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_typeOfDeviceclientDevice">
+          <End Role="typesOfDevices" Type="Self.typesOfDevices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="clientsDevices" Type="Self.clientsDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typesOfDevices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="clientsDevices">
+              <PropertyRef Name="typeOfDeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_typeOfModulemodule">
+          <End Role="typesOfModule" Type="Self.typesOfModule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="modules" Type="Self.modules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="typesOfModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="modules">
+              <PropertyRef Name="typeOfModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_unitcharacteristic">
+          <End Role="units" Type="Self.units" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="characteristics" Type="Self.characteristics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="units">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="characteristics">
+              <PropertyRef Name="unitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="repairerExecuteServices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="repairerId" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="typeOfDevice" Type="nvarchar" MaxLength="60" Nullable="false" />
+                <Property Name="deviceName" Type="nvarchar" MaxLength="150" Nullable="false" />
+                <Property Name="deviceDescription" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="serviceName" Type="nvarchar" MaxLength="160" Nullable="false" />
+                <Property Name="serviceDescription" Type="nvarchar(max)" Nullable="false" />
+                <Property Name="stage" Type="nvarchar" MaxLength="60" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="serviceCenterModelStoreContainer">
+          <EntitySet Name="characteristics" EntityType="Self.characteristics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clientsDevices" EntityType="Self.clientsDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="contracts" EntityType="Self.contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="moduleCharacteristics" EntityType="Self.moduleCharacteristics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modules" EntityType="Self.modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="positions" EntityType="Self.positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="requestedServices" EntityType="Self.requestedServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="services" EntityType="Self.services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servicesExecution" EntityType="Self.servicesExecution" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stagesOfImplementations" EntityType="Self.stagesOfImplementations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typesOfDevices" EntityType="Self.typesOfDevices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="typesOfModule" EntityType="Self.typesOfModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="units" EntityType="Self.units" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="upgradesReplacements" EntityType="Self.upgradesReplacements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_requestedServices" EntityType="Self.View_requestedServices" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_requestedServices].[Id] AS [Id], 
+    [View_requestedServices].[typeNeme] AS [typeNeme], 
+    [View_requestedServices].[deviceName] AS [deviceName], 
+    [View_requestedServices].[deviceDescription] AS [deviceDescription], 
+    [View_requestedServices].[serviceName] AS [serviceName], 
+    [View_requestedServices].[serviceDescription] AS [serviceDescription], 
+    [View_requestedServices].[approximateEndDate] AS [approximateEndDate], 
+    [View_requestedServices].[stages] AS [stages]
+    FROM [dbo].[View_requestedServices] AS [View_requestedServices]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_characteristicmoduleCharacteristic" Association="Self.FK_characteristicmoduleCharacteristic">
+            <End Role="characteristics" EntitySet="characteristics" />
+            <End Role="moduleCharacteristics" EntitySet="moduleCharacteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clientcontract" Association="Self.FK_clientcontract">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="contracts" EntitySet="contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clientDevicerequestedService" Association="Self.FK_clientDevicerequestedService">
+            <End Role="clientsDevices" EntitySet="clientsDevices" />
+            <End Role="requestedServices" EntitySet="requestedServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_clientDeviceupgradeReplacement" Association="Self.FK_clientDeviceupgradeReplacement">
+            <End Role="clientsDevices" EntitySet="clientsDevices" />
+            <End Role="upgradesReplacements" EntitySet="upgradesReplacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_contractclientDevice" Association="Self.FK_contractclientDevice">
+            <End Role="contracts" EntitySet="contracts" />
+            <End Role="clientsDevices" EntitySet="clientsDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeeserviceExecution" Association="Self.FK_employeeserviceExecution">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="servicesExecution" EntitySet="servicesExecution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employeeupgradeReplacement" Association="Self.FK_employeeupgradeReplacement">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="upgradesReplacements" EntitySet="upgradesReplacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_modulemoduleCharacteristic" Association="Self.FK_modulemoduleCharacteristic">
+            <End Role="modules" EntitySet="modules" />
+            <End Role="moduleCharacteristics" EntitySet="moduleCharacteristics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_moduleupgradeReplacement" Association="Self.FK_moduleupgradeReplacement">
+            <End Role="modules" EntitySet="modules" />
+            <End Role="upgradesReplacements" EntitySet="upgradesReplacements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_positionemployee" Association="Self.FK_positionemployee">
+            <End Role="positions" EntitySet="positions" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_requestedServiceserviceExecution" Association="Self.FK_requestedServiceserviceExecution">
+            <End Role="requestedServices" EntitySet="requestedServices" />
+            <End Role="servicesExecution" EntitySet="servicesExecution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_servicerequestedService" Association="Self.FK_servicerequestedService">
+            <End Role="services" EntitySet="services" />
+            <End Role="requestedServices" EntitySet="requestedServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stageOfImplementationrequestedService" Association="Self.FK_stageOfImplementationrequestedService">
+            <End Role="stagesOfImplementations" EntitySet="stagesOfImplementations" />
+            <End Role="requestedServices" EntitySet="requestedServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_typeOfDeviceclientDevice" Association="Self.FK_typeOfDeviceclientDevice">
+            <End Role="typesOfDevices" EntitySet="typesOfDevices" />
+            <End Role="clientsDevices" EntitySet="clientsDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_typeOfModulemodule" Association="Self.FK_typeOfModulemodule">
+            <End Role="typesOfModule" EntitySet="typesOfModule" />
+            <End Role="modules" EntitySet="modules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_unitcharacteristic" Association="Self.FK_unitcharacteristic">
+            <End Role="units" EntitySet="units" />
+            <End Role="characteristics" EntitySet="characteristics" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="serviceCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -466,7 +517,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="unit" Relationship="serviceCenterModel.unitcharacteristic" FromRole="characteristic" ToRole="unit" />
           <Property Name="unitId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="moduleCharacteristics" Relationship="serviceCenterModel.characteristicmoduleCharacteristic" FromRole="characteristic" ToRole="moduleCharacteristic" />
@@ -500,9 +551,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="dateOfReceipt" Type="DateTime" Nullable="false" />
-          <Property Name="approximateEndDate" Type="DateTime" Nullable="false" />
-          <Property Name="endDate" Type="DateTime" Nullable="true" />
+          <Property Name="dateOfReceipt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="approximateEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="true" Precision="3" />
           <Property Name="approximateCost" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="endCost" Type="Int32" Nullable="true" />
           <NavigationProperty Name="clientDevices" Relationship="serviceCenterModel.contractclientDevice" FromRole="contract" ToRole="clientDevice" />
@@ -533,7 +584,7 @@
           <Property Name="clientDeviceId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="service" Relationship="serviceCenterModel.servicerequestedService" FromRole="requestedService" ToRole="service" />
           <Property Name="serviceId" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="stageOfImplementation" Relationship="serviceCenterModel.stageOfImplementationrequestedService" FromRole="requestedService" ToRole="stageOfImplementation" />
           <Property Name="stageOfImplementationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="servicesExecution" Relationship="serviceCenterModel.requestedServiceserviceExecution" FromRole="requestedService" ToRole="serviceExecution" />
@@ -579,7 +630,7 @@
           <Property Name="modulePrice" Type="Int32" Nullable="false" DefaultValue="0" />
           <NavigationProperty Name="module" Relationship="serviceCenterModel.moduleupgradeReplacement" FromRole="upgradeReplacement" ToRole="module" />
           <Property Name="moduleId" Type="Int32" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="clientDevice" Relationship="serviceCenterModel.clientDeviceupgradeReplacement" FromRole="upgradeReplacement" ToRole="clientDevice" />
           <Property Name="clientDeviceId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="employee" Relationship="serviceCenterModel.employeeupgradeReplacement" FromRole="upgradeReplacement" ToRole="employee" />
@@ -666,6 +717,40 @@
             <End Role="requestedService" EntitySet="requestedServices" />
             <End Role="serviceExecution" EntitySet="servicesExecution" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(serviceCenterModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(serviceCenterModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="View_requestedServices" EntityType="serviceCenterModel.View_requestedServices" />
+          <FunctionImport Name="repairerExecuteServices" IsComposable="true" ReturnType="Collection(serviceCenterModel.repairerExecuteServices_Result)">
+            <Parameter Name="repairerId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="moduleCharacteristic">
           <Key>
@@ -676,7 +761,7 @@
           <Property Name="characteristicId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="module" Relationship="serviceCenterModel.modulemoduleCharacteristic" FromRole="moduleCharacteristic" ToRole="module" />
           <Property Name="moduleId" Type="Int32" Nullable="false" />
-          <Property Name="Value" Type="String" Nullable="false" MaxLength="70" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="70" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="unitcharacteristic">
           <End Type="serviceCenterModel.unit" Role="unit" Multiplicity="1" >
@@ -837,14 +922,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIO" Type="String" Nullable="false" MaxLength="160" />
-          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="16" />
+          <Property Name="FIO" Type="String" Nullable="false" MaxLength="160" Unicode="true" FixedLength="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="upgradesReplacements" Relationship="serviceCenterModel.employeeupgradeReplacement" FromRole="employee" ToRole="upgradeReplacement" />
           <NavigationProperty Name="position" Relationship="serviceCenterModel.positionemployee" FromRole="employee" ToRole="position" />
           <Property Name="positionId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="servicesExecution" Relationship="serviceCenterModel.employeeserviceExecution" FromRole="employee" ToRole="serviceExecution" />
-          <Property Name="login" Type="String" Nullable="false" MaxLength="60" />
-          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="resetPassword" Type="Boolean" Nullable="false" DefaultValue="False" />
         </EntityType>
         <EntityType Name="position">
@@ -852,7 +937,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="employees" Relationship="serviceCenterModel.positionemployee" FromRole="position" ToRole="employee" />
         </EntityType>
         <Association Name="employeeupgradeReplacement">
@@ -888,7 +973,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="60" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="requestedServices" Relationship="serviceCenterModel.stageOfImplementationrequestedService" FromRole="stageOfImplementation" ToRole="requestedService" />
         </EntityType>
         <Association Name="stageOfImplementationrequestedService">
@@ -914,8 +999,9 @@
           <Property Name="employeeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="requestedService" Relationship="serviceCenterModel.requestedServiceserviceExecution" FromRole="serviceExecution" ToRole="requestedService" />
           <Property Name="requestedServiceId" Type="Int32" Nullable="false" />
-          <Property Name="dateOfBegin" Type="DateTime" Nullable="false" />
-          <Property Name="dateOfEnd" Type="DateTime" Nullable="true" />
+          <Property Name="dateOfBegin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dateOfEnd" Type="DateTime" Nullable="true" Precision="3" />
+          <Property Name="result" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="employeeserviceExecution">
           <End Type="serviceCenterModel.employee" Role="employee" Multiplicity="1" >
@@ -945,6 +1031,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="View_requestedServices">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="typeNeme" />
+            <PropertyRef Name="deviceName" />
+            <PropertyRef Name="deviceDescription" />
+            <PropertyRef Name="serviceName" />
+            <PropertyRef Name="serviceDescription" />
+            <PropertyRef Name="approximateEndDate" />
+            <PropertyRef Name="stages" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="typeNeme" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="deviceName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="deviceDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="serviceName" Type="String" Nullable="false" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="serviceDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="approximateEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="stages" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="repairerExecuteServices_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="typeOfDevice" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="deviceName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="deviceDescription" Nullable="false" />
+          <Property Type="String" Name="serviceName" Nullable="false" MaxLength="160" />
+          <Property Type="String" Name="serviceDescription" Nullable="false" />
+          <Property Type="String" Name="stage" Nullable="false" MaxLength="60" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1110,9 +1236,37 @@
           <ScalarProperty Name="requestedServiceId" ColumnName="requestedServiceId" />
           <ScalarProperty Name="dateOfBegin" ColumnName="dateOfBegin" />
           <ScalarProperty Name="dateOfEnd" ColumnName="dateOfEnd" />
+          <ScalarProperty Name="result" ColumnName="result" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="View_requestedServices">
+            <EntityTypeMapping TypeName="serviceCenterModel.View_requestedServices">
+              <MappingFragment StoreEntitySet="View_requestedServices">
+                <ScalarProperty Name="stages" ColumnName="stages" />
+                <ScalarProperty Name="approximateEndDate" ColumnName="approximateEndDate" />
+                <ScalarProperty Name="serviceDescription" ColumnName="serviceDescription" />
+                <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+                <ScalarProperty Name="deviceDescription" ColumnName="deviceDescription" />
+                <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+                <ScalarProperty Name="typeNeme" ColumnName="typeNeme" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="repairerExecuteServices" FunctionName="serviceCenterModel.Store.repairerExecuteServices">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="serviceCenterModel.repairerExecuteServices_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="typeOfDevice" ColumnName="typeOfDevice" />
+                <ScalarProperty Name="deviceName" ColumnName="deviceName" />
+                <ScalarProperty Name="deviceDescription" ColumnName="deviceDescription" />
+                <ScalarProperty Name="serviceName" ColumnName="serviceName" />
+                <ScalarProperty Name="serviceDescription" ColumnName="serviceDescription" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

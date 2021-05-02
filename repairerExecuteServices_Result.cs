@@ -10,18 +10,15 @@
 namespace serviceCenter
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class serviceExecution
+    public partial class repairerExecuteServices_Result
     {
         public int Id { get; set; }
-        public int employeeId { get; set; }
-        public int requestedServiceId { get; set; }
-        public System.DateTime dateOfBegin { get; set; }
-        public Nullable<System.DateTime> dateOfEnd { get; set; }
-        public string result { get; set; }
-    
-        public virtual employee employee { get; set; }
-        public virtual requestedService requestedService { get; set; }
+        public string typeOfDevice { get; set; }
+        public string deviceName { get; set; }
+        public string deviceDescription { get; set; }
+        public string serviceName { get; set; }
+        public string serviceDescription { get; set; }
+        public string stage { get; set; }
     }
 }

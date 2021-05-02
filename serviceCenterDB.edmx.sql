@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/09/2021 01:17:30
+-- Date Created: 04/25/2021 18:14:43
 -- Generated from EDMX file: C:\diplom\serviceCenter\serviceCenterDB.edmx
 -- --------------------------------------------------
 
@@ -17,53 +17,53 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_unitcharacteristic]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[characteristics] DROP CONSTRAINT [FK_unitcharacteristic];
-GO
 IF OBJECT_ID(N'[dbo].[FK_characteristicmoduleCharacteristic]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[moduleCharacteristics] DROP CONSTRAINT [FK_characteristicmoduleCharacteristic];
-GO
-IF OBJECT_ID(N'[dbo].[FK_modulemoduleCharacteristic]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[moduleCharacteristics] DROP CONSTRAINT [FK_modulemoduleCharacteristic];
-GO
-IF OBJECT_ID(N'[dbo].[FK_typeOfModulemodule]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[modules] DROP CONSTRAINT [FK_typeOfModulemodule];
-GO
-IF OBJECT_ID(N'[dbo].[FK_moduleupgradeReplacement]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_moduleupgradeReplacement];
-GO
-IF OBJECT_ID(N'[dbo].[FK_clientDeviceupgradeReplacement]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_clientDeviceupgradeReplacement];
-GO
-IF OBJECT_ID(N'[dbo].[FK_typeOfDeviceclientDevice]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_typeOfDeviceclientDevice];
-GO
-IF OBJECT_ID(N'[dbo].[FK_clientDevicerequestedService]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_clientDevicerequestedService];
-GO
-IF OBJECT_ID(N'[dbo].[FK_servicerequestedService]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_servicerequestedService];
-GO
-IF OBJECT_ID(N'[dbo].[FK_contractclientDevice]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_contractclientDevice];
 GO
 IF OBJECT_ID(N'[dbo].[FK_clientcontract]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[contracts] DROP CONSTRAINT [FK_clientcontract];
 GO
-IF OBJECT_ID(N'[dbo].[FK_employeeupgradeReplacement]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_employeeupgradeReplacement];
+IF OBJECT_ID(N'[dbo].[FK_clientDevicerequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_clientDevicerequestedService];
 GO
-IF OBJECT_ID(N'[dbo].[FK_positionemployee]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[employees] DROP CONSTRAINT [FK_positionemployee];
+IF OBJECT_ID(N'[dbo].[FK_clientDeviceupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_clientDeviceupgradeReplacement];
 GO
-IF OBJECT_ID(N'[dbo].[FK_stageOfImplementationrequestedService]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_stageOfImplementationrequestedService];
+IF OBJECT_ID(N'[dbo].[FK_contractclientDevice]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_contractclientDevice];
 GO
 IF OBJECT_ID(N'[dbo].[FK_employeeserviceExecution]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[servicesExecution] DROP CONSTRAINT [FK_employeeserviceExecution];
 GO
+IF OBJECT_ID(N'[dbo].[FK_employeeupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_employeeupgradeReplacement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_modulemoduleCharacteristic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[moduleCharacteristics] DROP CONSTRAINT [FK_modulemoduleCharacteristic];
+GO
+IF OBJECT_ID(N'[dbo].[FK_moduleupgradeReplacement]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[upgradesReplacements] DROP CONSTRAINT [FK_moduleupgradeReplacement];
+GO
+IF OBJECT_ID(N'[dbo].[FK_positionemployee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[employees] DROP CONSTRAINT [FK_positionemployee];
+GO
 IF OBJECT_ID(N'[dbo].[FK_requestedServiceserviceExecution]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[servicesExecution] DROP CONSTRAINT [FK_requestedServiceserviceExecution];
+GO
+IF OBJECT_ID(N'[dbo].[FK_servicerequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_servicerequestedService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_stageOfImplementationrequestedService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[requestedServices] DROP CONSTRAINT [FK_stageOfImplementationrequestedService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_typeOfDeviceclientDevice]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[clientsDevices] DROP CONSTRAINT [FK_typeOfDeviceclientDevice];
+GO
+IF OBJECT_ID(N'[dbo].[FK_typeOfModulemodule]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[modules] DROP CONSTRAINT [FK_typeOfModulemodule];
+GO
+IF OBJECT_ID(N'[dbo].[FK_unitcharacteristic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[characteristics] DROP CONSTRAINT [FK_unitcharacteristic];
 GO
 
 -- --------------------------------------------------
@@ -73,23 +73,38 @@ GO
 IF OBJECT_ID(N'[dbo].[characteristics]', 'U') IS NOT NULL
     DROP TABLE [dbo].[characteristics];
 GO
-IF OBJECT_ID(N'[dbo].[clientsDevices]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[clientsDevices];
-GO
 IF OBJECT_ID(N'[dbo].[clients]', 'U') IS NOT NULL
     DROP TABLE [dbo].[clients];
+GO
+IF OBJECT_ID(N'[dbo].[clientsDevices]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[clientsDevices];
 GO
 IF OBJECT_ID(N'[dbo].[contracts]', 'U') IS NOT NULL
     DROP TABLE [dbo].[contracts];
 GO
+IF OBJECT_ID(N'[dbo].[employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[employees];
+GO
+IF OBJECT_ID(N'[dbo].[moduleCharacteristics]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[moduleCharacteristics];
+GO
 IF OBJECT_ID(N'[dbo].[modules]', 'U') IS NOT NULL
     DROP TABLE [dbo].[modules];
+GO
+IF OBJECT_ID(N'[dbo].[positions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[positions];
 GO
 IF OBJECT_ID(N'[dbo].[requestedServices]', 'U') IS NOT NULL
     DROP TABLE [dbo].[requestedServices];
 GO
 IF OBJECT_ID(N'[dbo].[services]', 'U') IS NOT NULL
     DROP TABLE [dbo].[services];
+GO
+IF OBJECT_ID(N'[dbo].[servicesExecution]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[servicesExecution];
+GO
+IF OBJECT_ID(N'[dbo].[stagesOfImplementations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[stagesOfImplementations];
 GO
 IF OBJECT_ID(N'[dbo].[typesOfDevices]', 'U') IS NOT NULL
     DROP TABLE [dbo].[typesOfDevices];
@@ -103,20 +118,8 @@ GO
 IF OBJECT_ID(N'[dbo].[upgradesReplacements]', 'U') IS NOT NULL
     DROP TABLE [dbo].[upgradesReplacements];
 GO
-IF OBJECT_ID(N'[dbo].[moduleCharacteristics]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[moduleCharacteristics];
-GO
-IF OBJECT_ID(N'[dbo].[employees]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[employees];
-GO
-IF OBJECT_ID(N'[dbo].[positions]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[positions];
-GO
-IF OBJECT_ID(N'[dbo].[stagesOfImplementations]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[stagesOfImplementations];
-GO
-IF OBJECT_ID(N'[dbo].[servicesExecution]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[servicesExecution];
+IF OBJECT_ID(N'[serviceCenterModelStoreContainer].[View_requestedServices]', 'U') IS NOT NULL
+    DROP TABLE [serviceCenterModelStoreContainer].[View_requestedServices];
 GO
 
 -- --------------------------------------------------
@@ -265,7 +268,21 @@ CREATE TABLE [dbo].[servicesExecution] (
     [employeeId] int  NOT NULL,
     [requestedServiceId] int  NOT NULL,
     [dateOfBegin] datetime  NOT NULL,
-    [dateOfEnd] datetime  NULL
+    [dateOfEnd] datetime  NULL,
+    [result] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'View_requestedServices'
+CREATE TABLE [dbo].[View_requestedServices] (
+    [typeNeme] nvarchar(60)  NOT NULL,
+    [deviceName] nvarchar(150)  NOT NULL,
+    [deviceDescription] nvarchar(max)  NOT NULL,
+    [serviceName] nvarchar(160)  NOT NULL,
+    [serviceDescription] nvarchar(max)  NOT NULL,
+    [approximateEndDate] datetime  NOT NULL,
+    [stages] nvarchar(60)  NOT NULL,
+    [Id] int  NOT NULL
 );
 GO
 
@@ -367,6 +384,12 @@ GO
 ALTER TABLE [dbo].[servicesExecution]
 ADD CONSTRAINT [PK_servicesExecution]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages], [Id] in table 'View_requestedServices'
+ALTER TABLE [dbo].[View_requestedServices]
+ADD CONSTRAINT [PK_View_requestedServices]
+    PRIMARY KEY CLUSTERED ([typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages], [Id] ASC);
 GO
 
 -- --------------------------------------------------

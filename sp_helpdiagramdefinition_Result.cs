@@ -10,18 +10,10 @@
 namespace serviceCenter
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class serviceExecution
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int Id { get; set; }
-        public int employeeId { get; set; }
-        public int requestedServiceId { get; set; }
-        public System.DateTime dateOfBegin { get; set; }
-        public Nullable<System.DateTime> dateOfEnd { get; set; }
-        public string result { get; set; }
-    
-        public virtual employee employee { get; set; }
-        public virtual requestedService requestedService { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

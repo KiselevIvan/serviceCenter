@@ -1,0 +1,86 @@
+﻿<Window x:Class="serviceCenter.Windows.ModuleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:serviceCenter.Windows"
+        mc:Ignorable="d"
+        Height="450" Width="860"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Grid Margin="20,0,20,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Описание модуля" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Описание параметров" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Content="Описание характеристик" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Border Grid.Row="2" Margin="0,0,5,0" BorderThickness="1" BorderBrush="Gray">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Тип: " HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <ComboBox Name="cbType" DisplayMemberPath="name" SelectedValuePath="id" MinWidth="214"/>
+                    <Button Name="bAddType" Content="Добавить" Click="bAddType_Click"/>
+                </StackPanel>
+                <Label Content="Название:" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox Name="tbName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+
+                <Label Content="Кол-во в наличии:" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox Name="tbInStock" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+
+                <Label Content="Кол-во под заказ:" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox Name="tbToOrder" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+                <Label Content="Неснижаемый запас:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox Name="tbSafetyStock" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Grid.Column="1" Margin="5,0,0,0" BorderBrush="Gray" BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid ItemsSource="{Binding TabModuleCharacteristic}" Name="dgCharacteristic" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dgCharacteristic_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding characteristic.name}"/>
+                        <DataGridTextColumn Header="Значение" Binding="{Binding Value}"/>
+                        <DataGridTextColumn Header="Ед. измерения" Binding="{Binding characteristic.unit.name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,10,0,0">
+                    <Button Name="bAddCharacteristic" Content="Добавить" Click="bAddCharacteristic_Click"/>
+                    <Button Name="bDelCharacteristic" Content="Удалить" Click="bDelCharacteristic_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="0,30,0,10">
+            <Button Name="bOk" Content="Сохранить" Margin="0,0,20,0" Padding="3" Click="bOk_Click"/>
+            <Button Name="bCancel" Content="Отмена" Margin="20,0,0,0" Padding="3" Click="bCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

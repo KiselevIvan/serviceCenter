@@ -60,6 +60,9 @@ namespace serviceCenter.Pages
                         case "Менеджер":
                             currentPage = new Pages.managerPage();
                             break;
+                        case "Мастер":
+                            currentPage = new Pages.repairerPage(currentUser);
+                            break;
                     }
 
                     if (currentPage != null)

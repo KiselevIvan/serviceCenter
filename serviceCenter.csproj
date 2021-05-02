@@ -117,7 +117,13 @@
     <Compile Include="Pages\managerPage.xaml.cs">
       <DependentUpon>managerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\repairerPage.xaml.cs">
+      <DependentUpon>repairerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="position.cs">
+      <DependentUpon>serviceCenterDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="repairerExecuteServices_Result.cs">
       <DependentUpon>serviceCenterDB.tt</DependentUpon>
     </Compile>
     <Compile Include="requestedService.cs">
@@ -144,6 +150,12 @@
     <Compile Include="serviceExecution.cs">
       <DependentUpon>serviceCenterDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>serviceCenterDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>serviceCenterDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="stageOfImplementation.cs">
       <DependentUpon>serviceCenterDB.tt</DependentUpon>
     </Compile>
@@ -163,6 +175,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="View_requestedServices.cs">
+      <DependentUpon>serviceCenterDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\characteristicWindow.xaml.cs">
+      <DependentUpon>characteristicWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\clientWindow.xaml.cs">
       <DependentUpon>clientWindow.xaml</DependentUpon>
     </Compile>
@@ -178,6 +196,15 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\moduleCharacteristicWindow.xaml.cs">
+      <DependentUpon>moduleCharacteristicWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ModuleWindow.xaml.cs">
+      <DependentUpon>ModuleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\serviceExecuteResultWindow.xaml.cs">
+      <DependentUpon>serviceExecuteResultWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ServicesWindow.xaml.cs">
       <DependentUpon>ServicesWindow.xaml</DependentUpon>
     </Compile>
@@ -186,6 +213,12 @@
     </Compile>
     <Compile Include="Windows\typeOfDeviceWindow.xaml.cs">
       <DependentUpon>typeOfDeviceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TypeOfModuleWindow.xaml.cs">
+      <DependentUpon>TypeOfModuleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\unitWindow.xaml.cs">
+      <DependentUpon>unitWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\userChangePasswordWindow.xaml.cs">
       <DependentUpon>userChangePasswordWindow.xaml</DependentUpon>
@@ -199,6 +232,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\managerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\repairerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\characteristicWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +263,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\moduleCharacteristicWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ModuleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\serviceExecuteResultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\ServicesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +284,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\typeOfDeviceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TypeOfModuleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\unitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

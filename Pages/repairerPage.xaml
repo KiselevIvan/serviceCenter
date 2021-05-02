@@ -1,0 +1,100 @@
+﻿<Page x:Class="serviceCenter.Pages.repairerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:serviceCenter.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="repairerPage">
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Заявки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridRequestedServices" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип устройства" Binding="{Binding typeName}"/>
+                            <DataGridTextColumn Header="Устройство" Binding="{Binding deviceName}"/>
+                            <DataGridTextColumn Header="Описание устройства" Binding="{Binding deviceDescription}"/>
+                            <DataGridTextColumn Header="Услуга" Binding="{Binding serviceName}"/>
+                            <DataGridTextColumn Header="Описание заявленой услуги" Binding="{Binding serviceDescription}"/>
+                            <DataGridTextColumn Header="Срок выполнения" Binding="{Binding approximateEndDate , StringFormat=\{0:dd.MM.yy\}}"/>                            
+                            <DataGridTextColumn Header="Состояние" Binding="{Binding stages}"/>                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="bAddForWork" Content="Взять в работу" Click="bAddForWork_Click"/>                        
+                        <Button Name="bUpdateRequestedServicesList" Content="Обновить список" Click="bUpdateRequestedServicesList_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Мои заявки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridMyServiceExecution" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип устройства" Binding="{Binding typeOfDevice}"/>
+                            <DataGridTextColumn Header="Устройство" Binding="{Binding deviceName}"/>
+                            <DataGridTextColumn Header="Описание устройства" Binding="{Binding deviceDescription}"/>
+                            <DataGridTextColumn Header="Услуга" Binding="{Binding serviceName}"/>
+                            <DataGridTextColumn Header="Описание заявленой услуги" Binding="{Binding serviceDescription}"/>                           
+                            <DataGridTextColumn Header="Стадия" Binding="{Binding stage}"/>                           
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button x:Name="bEndWork" Content="Завершить выполнение" Click="bEndWork_Click"/>                        
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Запчасти">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridModules" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип модуля" Binding="{Binding typeOfModule.name}"/>
+                            <DataGridTextColumn Header="Модуль" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="В наличии" Binding="{Binding numberInStock}"/>
+                            <DataGridTextColumn Header="Под заказ" Binding="{Binding needToOrder}"/>
+                            <DataGridTextColumn Header="Неснижаемый остаток" Binding="{Binding safetyStock}"/>                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button Name="bAddModule" Content="Добавить" Click="bAddModule_Click"/>
+                        <Button Name="bDelModule" Content="Удалить" Click="bDelModule_Click"/>
+                        <Button Name="bEditModule" Content="Редактировать" Click="bEditModule_Click"/>
+                        <Button Name="bUpdateModules" Content="Обновить" Click="bUpdateModules_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Сотрудники">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridEmployee" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}"/>
+                            <DataGridTextColumn Header="Номер телефона" Binding="{Binding phoneNumber}"/>
+                            <DataGridTextColumn Header="Должность" Binding="{Binding position.name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>
