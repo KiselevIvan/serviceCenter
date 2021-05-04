@@ -175,6 +175,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VIew_contractsExecution.cs">
+      <DependentUpon>serviceCenterDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="View_requestedServices.cs">
       <DependentUpon>serviceCenterDB.tt</DependentUpon>
     </Compile>

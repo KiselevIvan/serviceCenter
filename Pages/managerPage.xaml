@@ -39,6 +39,39 @@
                 </Grid>
             </TabItem>
 
+            <TabItem Header="Договора">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridContracts" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ФИО клиента" Binding="{Binding clientFio}"/>
+                            <DataGridTextColumn Header="Номер телефона" Binding="{Binding ClientPhone}"/>
+                            <DataGridTextColumn Header="Дата заключения" Binding="{Binding dateOfReceipt, StringFormat=\{0:dd.MM.yy\}}"/>
+                            <DataGridTextColumn Header="Плановая дата выполнения" Binding="{Binding approximateEndDate, StringFormat=\{0:dd.MM.yy\}}"/>
+                            <DataGridTextColumn Header="Приблизительная стоимость" Binding="{Binding approximateCost}"/>
+                            <DataGridTextColumn Header="Дата завершения" Binding="{Binding endDate, StringFormat=\{0:dd.MM.yy\}}"/>
+                            <DataGridTextColumn Header="Ход выполнения" Binding="{Binding executionProcess}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="bEditContract" Click="bEditContract_Click">Редактировать</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button Name="bUpdateContractsList" Content="Обновить список" Click="bUpdateContractsList_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
             <TabItem Header="Сотрудники">
                 <Grid>
                     <Grid.RowDefinitions>

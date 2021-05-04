@@ -44,6 +44,7 @@ namespace serviceCenter
         public virtual DbSet<stageOfImplementation> stagesOfImplementations { get; set; }
         public virtual DbSet<serviceExecution> servicesExecution { get; set; }
         public virtual DbSet<View_requestedServices> View_requestedServices { get; set; }
+        public virtual DbSet<VIew_contractsExecution> VIew_contractsExecution { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

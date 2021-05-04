@@ -111,7 +111,7 @@
           <Property Name="requestedServiceId" Type="int" Nullable="false" />
           <Property Name="dateOfBegin" Type="datetime" Nullable="false" />
           <Property Name="dateOfEnd" Type="datetime" />
-          <Property Name="result" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="result" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="stagesOfImplementations">
           <Key>
@@ -151,6 +151,27 @@
           <Property Name="description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="clientDeviceId" Type="int" Nullable="false" />
           <Property Name="employeeId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "serviceCenter.dbo.VIew_contractsExecution" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VIew_contractsExecution">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="clientFio" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="dateOfReceipt" />
+            <PropertyRef Name="approximateEndDate" />
+            <PropertyRef Name="approximateCost" />
+            <PropertyRef Name="executionProcess" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="clientFio" Type="nvarchar" MaxLength="160" Nullable="false" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="dateOfReceipt" Type="datetime" Nullable="false" />
+          <Property Name="approximateEndDate" Type="datetime" Nullable="false" />
+          <Property Name="approximateCost" Type="int" Nullable="false" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="executionProcess" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "serviceCenter.dbo.View_requestedServices" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -431,6 +452,18 @@
           <EntitySet Name="typesOfModule" EntityType="Self.typesOfModule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="units" EntityType="Self.units" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="upgradesReplacements" EntityType="Self.upgradesReplacements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIew_contractsExecution" EntityType="Self.VIew_contractsExecution" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIew_contractsExecution].[Id] AS [Id], 
+    [VIew_contractsExecution].[clientFio] AS [clientFio], 
+    [VIew_contractsExecution].[ClientPhone] AS [ClientPhone], 
+    [VIew_contractsExecution].[dateOfReceipt] AS [dateOfReceipt], 
+    [VIew_contractsExecution].[approximateEndDate] AS [approximateEndDate], 
+    [VIew_contractsExecution].[approximateCost] AS [approximateCost], 
+    [VIew_contractsExecution].[endDate] AS [endDate], 
+    [VIew_contractsExecution].[executionProcess] AS [executionProcess]
+    FROM [dbo].[VIew_contractsExecution] AS [VIew_contractsExecution]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_requestedServices" EntityType="Self.View_requestedServices" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_requestedServices].[Id] AS [Id], 
@@ -749,8 +782,9 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="View_requestedServices" EntityType="serviceCenterModel.View_requestedServices" />
           <FunctionImport Name="repairerExecuteServices" IsComposable="true" ReturnType="Collection(serviceCenterModel.repairerExecuteServices_Result)">
-            <Parameter Name="repairerId" Mode="In" Type="Int32" />
+          <Parameter Name="repairerId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="VIew_contractsExecution" EntityType="serviceCenterModel.VIew_contractsExecution" />
         </EntityContainer>
         <EntityType Name="moduleCharacteristic">
           <Key>
@@ -1001,7 +1035,7 @@
           <Property Name="requestedServiceId" Type="Int32" Nullable="false" />
           <Property Name="dateOfBegin" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="dateOfEnd" Type="DateTime" Nullable="true" Precision="3" />
-          <Property Name="result" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="result" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
         </EntityType>
         <Association Name="employeeserviceExecution">
           <End Type="serviceCenterModel.employee" Role="employee" Multiplicity="1" >
@@ -1071,6 +1105,25 @@
           <Property Type="String" Name="serviceDescription" Nullable="false" />
           <Property Type="String" Name="stage" Nullable="false" MaxLength="60" />
         </ComplexType>
+        <EntityType Name="VIew_contractsExecution">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="clientFio" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="dateOfReceipt" />
+            <PropertyRef Name="approximateEndDate" />
+            <PropertyRef Name="approximateCost" />
+            <PropertyRef Name="executionProcess" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="clientFio" Type="String" Nullable="false" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="ClientPhone" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="dateOfReceipt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="approximateEndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="approximateCost" Type="Int32" Nullable="false" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="executionProcess" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1267,6 +1320,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="VIew_contractsExecution">
+            <EntityTypeMapping TypeName="serviceCenterModel.VIew_contractsExecution">
+              <MappingFragment StoreEntitySet="VIew_contractsExecution">
+                <ScalarProperty Name="executionProcess" ColumnName="executionProcess" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="approximateCost" ColumnName="approximateCost" />
+                <ScalarProperty Name="approximateEndDate" ColumnName="approximateEndDate" />
+                <ScalarProperty Name="dateOfReceipt" ColumnName="dateOfReceipt" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="clientFio" ColumnName="clientFio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/25/2021 18:14:43
+-- Date Created: 05/03/2021 12:15:36
 -- Generated from EDMX file: C:\diplom\serviceCenter\serviceCenterDB.edmx
 -- --------------------------------------------------
 
@@ -269,20 +269,20 @@ CREATE TABLE [dbo].[servicesExecution] (
     [requestedServiceId] int  NOT NULL,
     [dateOfBegin] datetime  NOT NULL,
     [dateOfEnd] datetime  NULL,
-    [result] nvarchar(max)  NOT NULL
+    [result] nvarchar(max)  NULL
 );
 GO
 
 -- Creating table 'View_requestedServices'
 CREATE TABLE [dbo].[View_requestedServices] (
+    [Id] int  NOT NULL,
     [typeNeme] nvarchar(60)  NOT NULL,
     [deviceName] nvarchar(150)  NOT NULL,
     [deviceDescription] nvarchar(max)  NOT NULL,
     [serviceName] nvarchar(160)  NOT NULL,
     [serviceDescription] nvarchar(max)  NOT NULL,
     [approximateEndDate] datetime  NOT NULL,
-    [stages] nvarchar(60)  NOT NULL,
-    [Id] int  NOT NULL
+    [stages] nvarchar(60)  NOT NULL
 );
 GO
 
@@ -386,10 +386,10 @@ ADD CONSTRAINT [PK_servicesExecution]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages], [Id] in table 'View_requestedServices'
+-- Creating primary key on [Id], [typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages] in table 'View_requestedServices'
 ALTER TABLE [dbo].[View_requestedServices]
 ADD CONSTRAINT [PK_View_requestedServices]
-    PRIMARY KEY CLUSTERED ([typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages], [Id] ASC);
+    PRIMARY KEY CLUSTERED ([Id], [typeNeme], [deviceName], [deviceDescription], [serviceName], [serviceDescription], [approximateEndDate], [stages] ASC);
 GO
 
 -- --------------------------------------------------

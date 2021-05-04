@@ -23,11 +23,17 @@ namespace serviceCenter.Pages
             dbGridClients.ItemsSource = core.serviceCenterDB.clients.ToList(); //устанавливаем источник данных для таблицы клиенты            
         }
 
+        private void updateGBGridContracts()
+        {
+            dbGridContracts.ItemsSource = core.serviceCenterDB.VIew_contractsExecution.ToList();
+        }
+
         public managerPage()
         {
             InitializeComponent();
             dbGridEmployee.ItemsSource = core.serviceCenterDB.employees.ToList(); //устанавливаем источник данных для таблицы сотрудники                        
             updateDbGridClients();
+            updateGBGridContracts();
             bAddContract.IsEnabled = false;
         }
 
@@ -50,7 +56,7 @@ namespace serviceCenter.Pages
         {//обработчик кнопки Оформить заявку
             Windows.contractWindow w = new Windows.contractWindow(dbGridClients.SelectedItem as client);
             w.ShowDialog();
-
+            updateGBGridContracts();
         }
 
 
@@ -62,6 +68,16 @@ namespace serviceCenter.Pages
         private void bUpdateClientsList_Click(object sender, RoutedEventArgs e)
         {
             updateDbGridClients();
+        }
+
+        private void bEditContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void bUpdateContractsList_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

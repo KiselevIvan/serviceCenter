@@ -18,7 +18,7 @@
                     </Grid.RowDefinitions>
                     <DataGrid Name="dbGridRequestedServices" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Тип устройства" Binding="{Binding typeName}"/>
+                            <DataGridTextColumn Header="Тип устройства" Binding="{Binding typeNeme}"/>
                             <DataGridTextColumn Header="Устройство" Binding="{Binding deviceName}"/>
                             <DataGridTextColumn Header="Описание устройства" Binding="{Binding deviceDescription}"/>
                             <DataGridTextColumn Header="Услуга" Binding="{Binding serviceName}"/>
