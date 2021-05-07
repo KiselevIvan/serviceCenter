@@ -58,6 +58,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
+                                            <Button Name="bShowContract" Click="bShowContract_Click">Просмотр</Button>
                                             <Button Name="bEditContract" Click="bEditContract_Click">Редактировать</Button>
                                         </StackPanel>
                                     </DataTemplate>
@@ -67,6 +68,7 @@
                     </DataGrid>
                     <StackPanel Orientation="Horizontal" Grid.Row="1">
                         <Button Name="bUpdateContractsList" Content="Обновить список" Click="bUpdateContractsList_Click"/>
+                        <Button Name="bfinishcontract" Content="Завершить" Click="bfinishcontract_Click"/>
                     </StackPanel>
                 </Grid>
             </TabItem>

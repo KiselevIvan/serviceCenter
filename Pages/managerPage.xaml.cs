@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace serviceCenter.Pages
 {
@@ -56,7 +57,12 @@ namespace serviceCenter.Pages
         {//обработчик кнопки Оформить заявку
             Windows.contractWindow w = new Windows.contractWindow(dbGridClients.SelectedItem as client);
             w.ShowDialog();
-            updateGBGridContracts();
+            if (w.DialogResult == true)
+            {
+                core.serviceCenterDB.contracts.Add(w.Contract);
+                core.serviceCenterDB.SaveChanges();
+                updateGBGridContracts();
+            }
         }
 
 
@@ -72,12 +78,55 @@ namespace serviceCenter.Pages
 
         private void bEditContract_Click(object sender, RoutedEventArgs e)
         {
+            Int32 id = (dbGridContracts.SelectedItem as VIew_contractsExecution).Id;
+            contract current = core.serviceCenterDB.contracts.Where(c => c.Id == id).First(); 
+            Windows.contractWindow w = new Windows.contractWindow(current);
+            w.ShowDialog();
+            if (w.DialogResult == true)
+            {       
+                core.serviceCenterDB.SaveChanges();
+            }
+            updateGBGridContracts();
+        }
 
+        private void bShowContract_Click(object sender, RoutedEventArgs e)
+        {
+            Int32 id = (dbGridContracts.SelectedItem as VIew_contractsExecution).Id;
+            contract current = core.serviceCenterDB.contracts.Where(c => c.Id == id).First();
+            Windows.contractWindow w = new Windows.contractWindow(current);
+            w.bOk.Visibility = Visibility.Collapsed;
+            w.bCancel.Content = "Закрыть";
+            w.bAddService.IsEnabled= w.bAddDevice.IsEnabled = false;
+            w.bEditDevice.IsEnabled = w.bEditService.IsEnabled = false;
+            w.ReadOnly = true;
+            w.Width += 400;
+            w.Height += 200;
+            w.ShowDialog();            
         }
 
         private void bUpdateContractsList_Click(object sender, RoutedEventArgs e)
         {
+            updateGBGridContracts();
+        }
 
+        private void bfinishcontract_Click(object sender, RoutedEventArgs e)
+        {
+            VIew_contractsExecution  ce= dbGridContracts.SelectedItem as VIew_contractsExecution;
+            if (ce != null)
+            {
+                contract currentContract = core.serviceCenterDB.contracts.Where(c => c.Id == ce.Id).First();
+                currentContract.endDate = DateTime.Now;
+                currentContract.endCost = currentContract.approximateCost;
+                foreach (clientDevice cd in currentContract.clientDevices)
+                {
+                    foreach (requestedService rs in cd.requestedServices)
+                    {
+                        rs.stageOfImplementationId = 4;
+                    }
+                }
+                MessageBox.Show("Выполнено");
+                core.serviceCenterDB.SaveChanges();
+            }
         }
     }
 }

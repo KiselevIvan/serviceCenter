@@ -51,7 +51,7 @@
             <Button Name="bDeleteDevice" Content="Удалить" Click="bDeleteDevice_Click"/>
         </StackPanel>
         
-        <StackPanel  Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel  Name="servicesButtonPanel" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <Button Name="bAddService" Content="Добавить" Click="bAddService_Click"/>
             <Button Name="bEditService" Content="Редактировать" Click="bEditService_Click"/>
             <Button Name="bDeleteSevice" Content="Удалить" Click="bDeleteSevice_Click"/>

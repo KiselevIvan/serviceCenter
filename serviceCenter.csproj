@@ -208,6 +208,9 @@
     <Compile Include="Windows\serviceExecuteResultWindow.xaml.cs">
       <DependentUpon>serviceExecuteResultWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\serviceExecutionWindow.xaml.cs">
+      <DependentUpon>serviceExecutionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ServicesWindow.xaml.cs">
       <DependentUpon>ServicesWindow.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\serviceExecuteResultWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\serviceExecutionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
