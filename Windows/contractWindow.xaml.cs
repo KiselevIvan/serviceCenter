@@ -40,7 +40,6 @@ namespace serviceCenter.Windows
             Contract.client = client;
             controlBokEnable();
             controlButtonsEnable();
-
         }
 
         public contractWindow(contract contract)
@@ -76,6 +75,35 @@ namespace serviceCenter.Windows
             };
             button.AddHandler(Button.ClickEvent, new RoutedEventHandler(bReturnToRepairer_Click));
             this.servicesButtonPanel.Children.Add(button);
+            button = new Button
+            {                
+                Name = "bReplaceUpgrade",
+                Content = "Установленные модули"                
+            };
+            button.AddHandler(Button.ClickEvent, new RoutedEventHandler(bReplaceUpgrade_Click));
+            this.servicesButtonPanel.Children.Add(button);
+        }
+
+        private void bReplaceUpgrade_Click(object sender, RoutedEventArgs e)
+        {
+            requestedService currentRS = dgServices.SelectedItem as requestedService;
+            if (currentRS == null)
+                MessageBox.Show("Услуга не выбрана");
+            else if (currentRS.service.name != "Замена модуля")
+                MessageBox.Show("Данная заявка не требует установки модулей");
+            else
+            {
+                List<upgradeReplacement> ur = core.serviceCenterDB.upgradesReplacements.Where(u => u.clientDeviceId == currentRS.clientDeviceId).ToList();
+                
+                {
+                    Windows.replaceUpgradeModuleWindow w = new Windows.replaceUpgradeModuleWindow(ur, currentRS.clientDevice, null);
+                    w.bAddModule.Visibility = w.bSave.Visibility = Visibility.Collapsed;
+                    w.bCancel.Content = "Закрыть";
+                    w.dgModules.Columns[4].Visibility = Visibility.Collapsed;
+                    w.ShowDialog();
+                    
+                }
+            }
         }
 
         private bool requestedServiceIsExecution(requestedService currentRS)

@@ -100,7 +100,7 @@ namespace serviceCenter.Pages
             w.bAddService.IsEnabled= w.bAddDevice.IsEnabled = false;
             w.bEditDevice.IsEnabled = w.bEditService.IsEnabled = false;
             w.ReadOnly = true;
-            w.Width += 400;
+            w.Width += 500;
             w.Height += 200;
             w.ShowDialog();            
         }
