@@ -35,6 +35,7 @@ namespace serviceCenter.Pages
             dbGridEmployee.ItemsSource = core.serviceCenterDB.employees.ToList(); //устанавливаем источник данных для таблицы сотрудники                        
             updateDbGridClients();
             updateGBGridContracts();
+            updateModules();
             bAddContract.IsEnabled = false;
         }
 
@@ -127,6 +128,46 @@ namespace serviceCenter.Pages
                 MessageBox.Show("Выполнено");
                 core.serviceCenterDB.SaveChanges();
             }
+        }
+
+        private void updateModules()
+        {
+            dbGridModules.ItemsSource = core.serviceCenterDB.modules.ToList();
+        }
+
+        private void bAddModule_Click(object sender, RoutedEventArgs e)
+        {
+            Windows.ModuleWindow w = new Windows.ModuleWindow();
+            w.ShowDialog();
+            if (w.DialogResult == true)
+            {
+                core.serviceCenterDB.modules.Add(w.Module);
+                core.serviceCenterDB.SaveChanges();
+                updateModules();
+            }
+        }
+
+        private void bUpdateModules_Click(object sender, RoutedEventArgs e)
+        {
+            updateModules();
+        }
+
+        private void bDelModule_Click(object sender, RoutedEventArgs e)
+        {
+            module current = dbGridModules.SelectedItem as module;
+            core.serviceCenterDB.modules.Remove(current);
+            core.serviceCenterDB.SaveChanges();
+            updateModules();
+        }
+
+        private void bEditModule_Click(object sender, RoutedEventArgs e)
+        {
+            module current = dbGridModules.SelectedItem as module;
+            Windows.ModuleWindow w = new Windows.ModuleWindow(current);
+            w.ShowDialog();
+            //(core.serviceCenterDB.modules.Where(m => m.Id == w.Module.Id).First())
+            core.serviceCenterDB.SaveChanges();
+            updateModules();
         }
     }
 }

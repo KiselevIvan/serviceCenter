@@ -135,5 +135,53 @@ namespace serviceCenter.Pages
             core.serviceCenterDB.SaveChanges();
             updateModules();
         }
+
+        private void bReplaceUpgrade_Click(object sender, RoutedEventArgs e)
+        {
+            Int32 reqestedServiceID = (dbGridMyServiceExecution.SelectedItem as repairerExecuteServices_Result).Id;
+            requestedService currentRS= core.serviceCenterDB.requestedServices.Where(rs => rs.Id == reqestedServiceID).First();
+            if (currentRS.service.name != "Замена модуля")
+                MessageBox.Show("Данная заявка не требует установки модулей");
+            else if (currentRS.stageOfImplementation.name == "Выполнено")
+                MessageBox.Show("Заявка уже выполнена");
+            else
+            {
+                List<upgradeReplacement> ur= core.serviceCenterDB.upgradesReplacements.Where(u => u.clientDeviceId == currentRS.clientDeviceId).ToList();
+                if (ur.Count == 0)
+                {
+                    Windows.replaceUpgradeModuleWindow w = new Windows.replaceUpgradeModuleWindow(currentRS.clientDevice, currentUser);
+                    w.ShowDialog();
+                    if (w.DialogResult == true)
+                    {
+                        foreach (var i in w.UR)
+                            core.serviceCenterDB.upgradesReplacements.Add(i);
+                        core.serviceCenterDB.SaveChanges();
+                    }
+                }
+
+                else
+                {
+                    Windows.replaceUpgradeModuleWindow w = new Windows.replaceUpgradeModuleWindow(ur,currentRS.clientDevice, currentUser);
+                    w.ShowDialog();
+                    if (w.DialogResult == true)
+                    {
+                        List<upgradeReplacement> urOrigin = core.serviceCenterDB.upgradesReplacements.Where(u => u.clientDeviceId == currentRS.clientDeviceId).ToList();
+                        foreach (var i in urOrigin)
+                        {
+                            if (!ur.Contains(i))
+                                core.serviceCenterDB.upgradesReplacements.Remove(i);
+                        }
+
+                        foreach (var i in w.UR)
+                        {                            
+                            var entry = core.serviceCenterDB.Entry(i);
+                            if (entry.State == System.Data.Entity.EntityState.Detached)
+                                core.serviceCenterDB.upgradesReplacements.Add(i);
+                        }                        
+                        core.serviceCenterDB.SaveChanges();
+                    }
+                }
+            }
+        }
     }
 }

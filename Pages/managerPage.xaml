@@ -89,6 +89,39 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Запчасти">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <DataGrid Name="dbGridModules" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Тип модуля" Binding="{Binding typeOfModule.name}"/>
+                            <DataGridTextColumn Header="Модуль" Binding="{Binding name}"/>
+                            <DataGridTextColumn Header="В наличии" Binding="{Binding numberInStock}"/>
+                            <DataGridTextColumn Header="Под заказ" Binding="{Binding needToOrder}"/>
+                            <DataGridTextColumn Header="Неснижаемый остаток" Binding="{Binding safetyStock}"/>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Name="bEditModule" Content="Редактировать" Click="bEditModule_Click"/>
+                                            <Button Name="bDelModule" Content="Удалить" Click="bDelModule_Click"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <Button Name="bAddModule" Content="Добавить" Click="bAddModule_Click"/>
+                        <Button Name="bUpdateModules" Content="Обновить" Click="bUpdateModules_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Page>

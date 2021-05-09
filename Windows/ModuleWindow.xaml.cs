@@ -142,5 +142,20 @@ namespace serviceCenter.Windows
                 MessageBox.Show("Введены некорректные данные");
 
         }
+
+        private void tbInStock_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            controlInput.DigitNumberValidationTextBox(sender, e);
+        }
+
+        private void tbToOrder_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            controlInput.DigitNumberValidationTextBox(sender, e);
+        }
+
+        private void tbSafetyStock_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            controlInput.DigitNumberValidationTextBox(sender, e);
+        }
     }
 }

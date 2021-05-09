@@ -47,12 +47,12 @@
                 <TextBox Name="tbName" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
 
                 <Label Content="Кол-во в наличии:" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBox Name="tbInStock" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
+                <TextBox Name="tbInStock" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" PreviewKeyDown="tbInStock_PreviewKeyDown"/>
 
                 <Label Content="Кол-во под заказ:" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBox Name="tbToOrder" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+                <TextBox Name="tbToOrder" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" PreviewKeyDown="tbToOrder_PreviewKeyDown"/>
                 <Label Content="Неснижаемый запас:" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <TextBox Name="tbSafetyStock" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center"/>
+                <TextBox Name="tbSafetyStock" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" PreviewKeyDown="tbSafetyStock_PreviewKeyDown"/>
             </Grid>
         </Border>
 

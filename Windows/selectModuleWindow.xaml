@@ -1,0 +1,56 @@
+﻿<Window x:Class="serviceCenter.Windows.selectModuleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:serviceCenter.Windows"
+        mc:Ignorable="d"
+        Height="450" Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Grid Margin="20,10,20,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Выбор модуля" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>        
+        <Label Content="Тип модуля:" Grid.Row="1" HorizontalAlignment="Right"/>
+        <ComboBox Name="cbType" DisplayMemberPath="name" SelectedValuePath="Id" Grid.Row="1" Grid.Column="1" SelectionChanged="cbType_SelectionChanged" />
+        <DataGrid Name="dgModules" Grid.Row="2" Grid.ColumnSpan="2" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>            
+                <DataGridTextColumn Header="Модуль" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="В наличии" Binding="{Binding numberInStock}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Name="bShow" Click="bShow_Click" Content="Просмотр"/>                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Grid.Row="3" Text="Текущая стоимость:" HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBox Name="tbPrice" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" PreviewKeyDown="tbPrice_PreviewKeyDown"/>
+        <Border Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1"/>
+        <Border Grid.Row="4" Grid.ColumnSpan="2" BorderBrush="Gray" BorderThickness="1"/>
+        <Label Content="Комментарий:" Grid.Row="4" HorizontalAlignment="Right"/>
+        <TextBox Name="tbDescription" Grid.Row="4" Grid.Column="1"/>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Name="bOk" Content="Добавить" Click="bOk_Click" Margin="0,0,20,0"/>
+            <Button Name="bCancel" Content="Отмена" Click="bCancel_Click" Margin="20,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
