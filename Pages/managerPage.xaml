@@ -13,10 +13,15 @@
             <TabItem Header="Клиенты">
                 <Grid>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <DataGrid Name="dbGridClients" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dbGridClients_SelectionChanged">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Поиск: "/>
+                        <TextBox Name="tbSearch" Width="400" TextChanged="tbSearch_TextChanged"/>
+                    </StackPanel>
+                    <DataGrid Name="dbGridClients" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" CanUserResizeRows="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="dbGridClients_SelectionChanged">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ФИО" Binding="{Binding FIO}"/>
                             <DataGridTextColumn Header="Номер телефона" Binding="{Binding phoneNumber}"/>
@@ -31,7 +36,7 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
                         <Button x:Name="bAddClient" Content="Добавить клиента" Click="bAddClient_Click"/>
                         <Button x:Name="bAddContract" Content="Сформировать договор" Click="bAddContract_Click" />
                         <Button Name="bUpdateClientsList" Content="Обновить список" Click="bUpdateClientsList_Click"/>
@@ -39,7 +44,7 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Договора">
+            <TabItem Header="Договоры">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>

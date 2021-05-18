@@ -29,9 +29,13 @@ namespace serviceCenter.Windows
 
         private void mainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {//обработчик изменения страницы
-            if (!(e.Content is Page page)) return; 
+            if (!(e.Content is Page page)) return;
             if (page is Pages.authenticationPage) //если текущая страница авторизация, то скрываем кнопку выход
+            {
                 bExit.Visibility = Visibility.Hidden;
+                lFIO.Content="";
+                lPosition.Content = "";
+            }
             else
                 bExit.Visibility = Visibility.Visible;
         }

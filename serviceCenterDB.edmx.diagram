@@ -38,8 +38,8 @@
         <AssociationConnector Association="serviceCenterModel.employeeserviceExecution" />
         <AssociationConnector Association="serviceCenterModel.requestedServiceserviceExecution" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="serviceCenterModel.View_requestedServices" Width="2.875" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="serviceCenterModel.VIew_contractsExecution" Width="2.875" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="serviceCenterModel.View_requestedServices" Width="2.875" PointX="5.875" PointY="14" IsExpanded="false" />
+        <EntityTypeShape EntityType="serviceCenterModel.VIew_contractsExecution" Width="2.875" PointX="9.25" PointY="14" IsExpanded="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

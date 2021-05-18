@@ -169,5 +169,11 @@ namespace serviceCenter.Pages
             core.serviceCenterDB.SaveChanges();
             updateModules();
         }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dbGridClients.ItemsSource=
+             core.serviceCenterDB.clients.Where(c=> c.FIO.Contains(tbSearch.Text) | c.phoneNumber.Contains(tbSearch.Text)).ToList();
+        }
     }
 }

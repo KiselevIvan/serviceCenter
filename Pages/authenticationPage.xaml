@@ -32,8 +32,8 @@
                 <Label Content="Авторзация" HorizontalAlignment="Center" Grid.ColumnSpan="2"/>
                 <Label Grid.Row="1" Content="Логин" HorizontalContentAlignment="Right" Background="White" BorderBrush="Gray" BorderThickness="1" />
                 <Label Grid.Row="2" Content="Пароль" HorizontalContentAlignment="Right" Background="White" BorderBrush="Gray" BorderThickness="1" />
-                <TextBox Text="manager" Grid.Row="1" Grid.Column="1" Margin="0,0,5,0" Name="tbLogin" HorizontalContentAlignment="Center"/>
-                <PasswordBox Password="1234" Grid.Column="1" Margin="0,0,5,0" Grid.Row="2" Name="pbPassword" PasswordChar="*" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,5,0" Name="tbLogin" HorizontalContentAlignment="Center"/>
+                <PasswordBox Grid.Column="1" Margin="0,0,5,0" Grid.Row="2" Name="pbPassword" PasswordChar="*" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"/>
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="Вход" VerticalAlignment="Center" Name="bEnter" Width="auto" Click="bEnter_Click"/>
                     <Button Content="Закрыть" VerticalAlignment="Center" Name="bExit" Width="auto" Click="bExit_Click" Margin="10,0,0,0"/>

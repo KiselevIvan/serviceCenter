@@ -66,7 +66,11 @@ namespace serviceCenter.Pages
                     }
 
                     if (currentPage != null)
+                    {
                         NavigationService.Navigate(currentPage);
+                        (Application.Current.MainWindow as Windows.MainWindow).lPosition.Content = currentUser.position.name +": ";
+                        (Application.Current.MainWindow as Windows.MainWindow).lFIO.Content = currentUser.FIO;
+                    }
                 }
             }
             else

@@ -13,9 +13,16 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Border Background="Gray" BorderBrush="Black" BorderThickness="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="bExit" Content="Выйти" Click="bExit_Click"/>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Name="lPosition" Foreground="White" HorizontalAlignment="Left"/>
+                <Label Name="lFIO" Foreground="White" Grid.Column="1" HorizontalAlignment="Left"/>
+                <Button x:Name="bExit" Grid.Column="2" Content="Выйти" Click="bExit_Click" HorizontalAlignment="Right"/>
+            </Grid>
         </Border>
         <Frame Grid.Row="1" x:Name="mainFrame" NavigationUIVisibility="Hidden" Navigated="mainFrame_Navigated"/>
     </Grid>

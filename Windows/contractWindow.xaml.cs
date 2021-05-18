@@ -57,9 +57,7 @@ namespace serviceCenter.Windows
             DataGridTextColumn textColumn = new DataGridTextColumn();
             textColumn.Header = "Стадия";
             textColumn.Binding = new Binding("stageOfImplementation.name");
-            dgServices.Columns.Add(textColumn);
-            textColumn.Header = "Результат";
-            textColumn.Binding = new Binding("stageOfImplementation.name");
+            dgServices.Columns.Add(textColumn);            
 
             var button = new Button
             {
